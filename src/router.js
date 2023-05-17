@@ -10,12 +10,11 @@ const BoardUser = () => import("./components/BoardUser.vue")
 
 
 
-import Project from "@/components/Project";
-import State from "@/components/State"; 
-import Employee from "@/components/Employee";
+
+
+
 import Task from "@/components/Task";
-import Tickets from "@/components/Tickets";
-import Tasklist from "@/components/Tasklist";
+
 //pageadmin
 import Listproductowneradmin from "../src/components/adminpages/Listproductowneradmin";
 import Listdevloppeuradmin from "../src/components/adminpages/Listdevloppeuradmin";
@@ -26,10 +25,10 @@ import AjouterDeveloppeuradmin from "../src/components/adminpages/AjouterDevelop
 import ModifierDeveloppeuradmin from "../src/components/adminpages/ModifierDeveloppeuradmin";
 import SupprimerDeveloppeuradmin from "../src/components/adminpages/SupprimerDeveloppeuradmin";
 import AjouterProjetadmin from "../src/components/adminpages/AjouterProjetadmin";
-import ModifierProjetadmin from "../src/components/adminpages/ModifierProjetadmin";
-import SupprimerProjetadmin from "../src/components/adminpages/SupprimerProjetadmin";
+
+
 import ListeDeProjetsadmin from "../src/components/adminpages/ListeDeProjetsadmin";
-import ToutesLesAffectationsadmin from "../src/components/adminpages/ToutesLesAffectationsadmin";
+
 import Affectationadmin from "../src/components/adminpages/Affectationadmin";
 
 import ModifierAffectationadmin from "../src/components/adminpages/ModifierAffectationadmin";
@@ -81,16 +80,8 @@ const routes = [
     name: "AjouterProjetadmin",
     component: AjouterProjetadmin,
   },
-  {
-    path: "/ModifierProjetadmin",
-    name: "ModifierProjetadmin",
-    component: ModifierProjetadmin,
-  },
-  {
-    path: "/SupprimerProjetadmin",
-    name: "SupprimerProjetadmin",
-    component: SupprimerProjetadmin,
-  },
+  
+  
   {
     path: "/ListeDeProjetsadmin",
     name: "ListeDeProjetsadmin",
@@ -106,11 +97,7 @@ const routes = [
     name: "Listdevloppeuradmin",
     component: Listdevloppeuradmin,
   },
-  {
-    path: "/ToutesLesAffectationsadmin",
-    name: "ToutesLesAffectationsadmin",
-    component: ToutesLesAffectationsadmin,
-  },
+
   {
     path: "/Affectationadmin",
     name: "Affectationadmin",
@@ -173,42 +160,17 @@ const routes = [
     component: BoardUser,
   },
 
-  {
-    path: "/Project",
-    name: "Project",
-    component: Project,
-  },
-  {
-    path: "/State",
-    name: "State",
-    component: State,
-  },
+ 
 
-  {
-    path: "/Employee",
-    name: "Employee",
-    component: Employee,
-  },
-  {
-    path: "/Employee",
-    name: "Employee",
-    component: Employee,
-  },
+
+  
   {
     path: "/Task",
     name: "Task",
     component: Task,
   },
-  {
-    path: "/Tickets",
-    name: "Tickets",
-    component: Tickets,
-  },
-  {
-    path: "/Tasklist",
-    name: "Tasklist",
-    component: Tasklist,
-  },
+ 
+  
 ];
 
 const router = createRouter({

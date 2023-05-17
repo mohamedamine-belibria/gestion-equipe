@@ -68,12 +68,8 @@
                 <li>
                   <router-link class="ms-link" to="/AjouterProjetadmin">AjouterProjet</router-link>
                 </li>
-                <li>
-                  <router-link class="ms-link" to="/ModifierProjetadmin">ModifierProjet</router-link>
-                </li>
-                <li>
-                  <router-link class="ms-link" to="/SupprimerProjetadmin">SupprimerProjet</router-link>
-                </li>
+                
+                
                 <li>
                   <router-link class="ms-link" to="/ListeDeProjetsadmin">ListeDeProjets</router-link>
                 </li>
@@ -85,15 +81,11 @@
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="form">
-                <li>
-                  <router-link class="ms-link" to="/ToutesLesAffectationsadmin">ToutesLesAffectations</router-link>
-                </li>
+               
                 <li>
                   <router-link class="ms-link" to="/Affectationadmin">Affectation</router-link>
                 </li>
-                <li>
-                  <router-link class="ms-link" to="/SupprimerAffectationadmin">SupprimerAffectation</router-link>
-                </li>
+                
                 <li>
                   <router-link class="ms-link" to="/ModifierAffectationadmin">ModifierAffectation</router-link>
                 </li>
@@ -148,6 +140,10 @@
 </template>
 
 <style scoped>
+@import url("../assets/Style.css");
+@import url("../assets/plugin/nestable/jquery-nestable.css");
+@import url("../assets/css/timetracker.style.min.css");
+
 .sidebar {
   width: 100%;
   max-width: 100%;
