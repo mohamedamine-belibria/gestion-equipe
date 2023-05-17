@@ -1,4 +1,5 @@
 <template>
+    
 <div class="row">
     <div class="col-md-3">
 
@@ -154,9 +155,9 @@
 .sidebar {
     width: 100%;
     max-width: 100%;
-    margin-right: 0;
-    margin-left: -50%;
-    margin-top: 20%;
+    margin-right: 10;
+    margin-left: -60%;
+    margin-top: 10%;
 }
 </style>
 

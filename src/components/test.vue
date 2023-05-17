@@ -1,229 +1,184 @@
 <template>
-  <div>
-    <h1>Liste des tâches</h1>
-    <ul>
-      <li v-for="task in tasks" :key="task.id">
-        {{ task.title }} - {{ task.description }}
-        <button @click="deleteTask(task.id)">Supprimer</button>
-        <button @click="editTask(task)">Modifier</button>
-      </li>
-    </ul>
-    <button @click="showAddTaskPopup">Ajouter une tâche</button>
+    
+<div class="row">
+    <div class="col-md-3">
 
-    <div v-if="showPopup">
-      <h2>{{ popupTitle }}</h2>
-      <form v-if="!editingTask" @submit.prevent="addTask">
-        <input type="text" v-model="newTask.title" placeholder="Titre" required />
-        <input
-          type="text"
-          v-model="newTask.description"
-          placeholder="Description"
-          required
-        />
-        <input
-          type="text"
-          v-model="newTask.dateCreationTask"
-          placeholder="Date de création"
-          required
-        />
-        <input
-          type="text"
-          v-model="newTask.dateFinTask"
-          placeholder="Date de fin"
-          required
-        />
-        <select v-model="newTask.stateId" required>
-          <option v-for="state in states" :key="state.id" :value="state.id">
-            {{ state.description }}
-          </option>
-        </select>
-        <button type="submit">Ajouter</button>
-      </form>
-      <form v-else @submit.prevent="updateTask">
-        <input
-          type="text"
-          v-model="newTask.title"
-          :placeholder="editingTask.title"
-          required
-        />
-        <input
-          type="text"
-          v-model="newTask.description"
-          :placeholder="editingTask.description"
-          required
-        />
-        <input type="text" v-model="newTask.dateCreationTask" required />
+        <div class="sidebar px-4 py-4 py-md-5 me-0 open">
+            <div class="d-flex flex-column h-100">
 
-        <input type="text" v-model="newTask.dateFinTask" required />
+                <a href="index.html" class="mb-0 brand-icon">
+                    <span class="logo-icon">
+                        <i class="icofont-stopwatch fs-2"></i>
+                    </span>
+                    <span>
+                        <router-link class="logo-text" to="/admin">Time-Tracker</router-link>
+                    </span>
+                </a>
 
-        <select v-model="newTask.stateId" required>
-          <option v-for="state in states" :key="state.id" :value="state.id">
-            {{ state.description }}
-          </option>
-        </select>
-        <button type="submit">Modifier</button>
-        <button @click="cancel">Annuler</button>
-      </form>
+                <!-- Menu: main ul -->
+                <ul class="menu-list flex-grow-1 mt-3">
+                    <li>
+                        <router-link class="m-link" to="/admin">
+                            <i class="icofont-home fs-5"></i>
+                            <span>Tableau de bord</span>
+                        </router-link>
+                    </li>
+
+                    <li class="collapsed">
+                        <a class="m-link active" data-bs-toggle="collapse" data-bs-target="#menu-report" href="#">
+                            <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                        </a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse show" id="menu-report">
+
+                            <li>
+                                <router-link class="ms-link" to="/Listproductowneradmin">Productowner</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/Listdevloppeuradmin">Développeur</router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#widget" href="#">
+                            <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                        </a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="widget">
+                            <li>
+                                <router-link class="ms-link" to="/AjouterProductowneradmin">AjouterProductowner</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/ModifierProductowneradmin">ModifierProductowner</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/SupprimerProductowneradmin">SupprimerProductowner</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/AjouterDeveloppeuradmin">AjouterDeveloppeur</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/ModifierDeveloppeuradmin">ModifierDeveloppeur</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/SupprimerDeveloppeuradmin">SupprimerDeveloppeur</router-link>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-order" href="#">
+                            <i class="icofont-tasks fs-5"></i> <span>Projets</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                        </a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="menu-order">
+                            <li>
+                                <router-link class="ms-link" to="/AjouterProjetadmin">AjouterProjet</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/ModifierProjetadmin">ModifierProjet</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/SupprimerProjetadmin">SupprimerProjet</router-link>
+                            </li>
+
+                            <li>
+                                <router-link class="ms-link" to="/ListeDeProjetsadmin">ListeDeProjets</router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#form" href="#">
+                            <i class="icofont-file-text fs-5"></i> <span>Affectation</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                        </a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="form">
+                            <li>
+                                <router-link class="ms-link" to="/ToutesLesAffectationsadmin">ToutesLesAffectations</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/Affectationadmin">Affectation</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/SupprimerAffectationadmin">SupprimerAffectation</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/ModifierAffectationadmin">ModifierAffectation</router-link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#font" href="#">
+                            <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                        </a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="font">
+                            <li>
+                                <router-link class="ms-link" to="/ProjetTermineadmin">ProjetTermine</router-link>
+                            </li>
+                            <li>
+                                <router-link class="ms-link" to="/ProjetEnCoursadmin">ProjetEnCours</router-link>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!-- Menu: menu collapse btn -->
+                <button type="button" class="btn btn-link sidebar-mini-btn text-light">
+                    <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+                </button>
+
+            </div>
+        </div>
     </div>
-  </div>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      tasks: [],
-      states: [],
-      newTask: {
-        title: "",
-        description: "",
-        dateCreationTask: "",
-        dateFinTask: "",
-        stateId: null,
-      },
-      editingTask: null,
-      popupTitle: "Ajouter une tâche",
-      showPopup: false,
-    };
-  },
-  mounted() {
-    this.fetchTasks();
-    this.fetchStates();
-  },
-  methods: {
-    fetchTasks() {
-      fetch("http://localhost:8080/getALLtask")
-        .then((response) => response.json())
-        .then((data) => {
-          this.tasks = data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    fetchStates() {
-      fetch("http://localhost:8080/getALLState")
-        .then((response) => response.json())
-        .then((data) => {
-          this.states = data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    addTask() {
-      fetch("http://localhost:8080/savetask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.newTask),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          this.tasks.push(data);
-          this.newTask = {
-            title: "",
-            description: "",
-            dateCreationTask: "",
-            dateFinTask: "",
-            stateId: "",
-          };
-          this.closePopup();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
 
-    // ...
-    deleteTask(taskId) {
-      fetch(`http://localhost:8080/deletetask/${taskId}`, {
-        method: "DELETE",
-      })
-        .then((response) => {
-          if (response.ok) {
-            this.tasks = this.tasks.filter((task) => task.id !== taskId);
-          } else {
-            console.log("Une erreur s'est produite lors de la suppression de la tâche.");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    editTask(task) {
-      this.editingTask = task;
-      this.newTask = {
-        id: task.id, // Ajouter l'identifiant de la tâche à modifier
-        title: task.title,
-        description: task.description,
-        dateCreationTask: task.dateCreationTask,
-        dateFinTask: task.dateFinTask,
-        stateId: task.stateId,
-      };
-      this.popupTitle = "Modifier la tâche";
-      this.showPopup = true;
-    },
-    updateTask() {
-      const taskId = this.editingTask.id;
-      fetch(`http://localhost:8080/updatetask/${taskId}`, {
-        // Ajouter un slash avant l'identifiant
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.newTask),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          const taskIndex = this.tasks.findIndex((task) => task.id === data.id);
-          if (taskIndex !== -1) {
-            this.tasks[taskIndex] = data;
-            this.newTask = {
-              id: null, // Réinitialiser l'identifiant
-              title: "",
-              description: "",
-              dateCreationTask: "",
-              dateFinTask: "",
-              stateId: null,
-            };
-            this.editingTask = null;
-            this.popupTitle = "Ajouter une tâche";
-            this.closePopup();
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    // ...
-    cancel() {
-      this.closePopup();
-      this.newTask = {
-        title: "",
-        description: "",
-        dateCreationTask: "",
-        dateFinTask: "",
-        stateId: null,
-      };
-      this.editingTask = null;
-      this.popupTitle = "Ajouter une tâche";
-    },
-    showAddTaskPopup() {
-      this.newTask = {
-        title: "",
-        description: "",
-        dateCreationTask: "",
-        dateFinTask: "",
-        stateId: null,
-      };
-      this.editingTask = null;
-      this.popupTitle = "Ajouter une tâche";
-      this.showPopup = true;
-    },
-    closePopup() {
-      this.showPopup = false;
-    },
-  },
-};
-</script>
+
+
+<div class="projects-page">
+    <h2>Projets ENCOURS</h2>
+    <table>
+      <!-- Tableau des projets terminés -->
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Dedline</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="projet in projetsTermines" :key="projet.id">
+          <td>{{ projet.name }}</td>
+          <td>{{ projet.description }}</td>
+          <td>{{ projet.dateCreation }}</td>
+          <td>{{ projet.dateFinProjet }}</td>
+          <td>{{ projet.dedline }}</td>
+          <td>{{ projet.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+    
+</div>
+</template>
+
+
+
+<style scoped>
+.sidebar {
+    width: 100%;
+    max-width: 100%;
+    margin-right: 10;
+    margin-left: -60%;
+    margin-top: 10%;
+}
+</style>
