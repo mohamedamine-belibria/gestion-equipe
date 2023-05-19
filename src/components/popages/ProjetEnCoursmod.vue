@@ -113,73 +113,117 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-9">
-        <header class="jumbotron">
-            <h3>{{ content }}</h3>
-
-            <div>cc</div>
-
-        </header>
-        <!-- Contenu de la page -->
-    </div>
 </div>
+
+     <div style="margin-top: -50%; margin-left:20%">
+  
+<div class="projects-page">
+    <h2>Projets ENCOURS</h2>
+    <table>
+      <!-- Tableau des projets terminés -->
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Date de début</th>
+          <th>Date de fin</th>
+          <th>Dedline</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="projet in projetsTermines" :key="projet.id">
+          <td>{{ projet.item.name }}</td>
+          <td>{{ projet.item.description }}</td>
+          <td>{{ projet.item.dateCreation }}</td>
+          <td>{{ projet.item.dateFinProjet }}</td>
+          <td>{{ projet.item.dedline }}</td>
+          <td>{{ projet.item.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+    </div>
 </template>
+
+
 
 <style scoped>
 .sidebar {
-  width: 100%;
-  max-width: 100%;
-  margin-right: 10px;
-  margin-left: -60%;
-  margin-top: 10%;
-}
-
-.home-page {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.welcome-section {
-  width: 70%;
-  padding: 20px;
-  background-color: #f2f2f2;
-  color: #333;
-}
-
-.statistics-section {
-  width: 30%;
-  background-color: #eaeaea;
-  padding: 20px;
-  color: #555;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 10;
+    margin-left: -60%;
+    margin-top: 10%;
 }
 </style>
 
 <script>
-import UserService from "../services/user.service";
-
 export default {
-  name: "Moderator",
   data() {
     return {
-      content: "",
+      projets: []
     };
   },
   mounted() {
-    UserService.getModeratorBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    this.fetchProjets();
   },
+  computed: {
+    projetsTermines() {
+      return this.projets.filter(projet => projet.item.statut === 'ENCOURS');
+    }
+  },
+    methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
+    },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          this.projets = data;
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération des projets :', error);
+        });
+    }
+  }
 };
 </script>
+
+<style scoped>
+.projects-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+</style>

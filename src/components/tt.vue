@@ -76,9 +76,6 @@
                 <li>
                   <router-link class="ms-link" to="/Affectationdetachemod">Affectation de tache</router-link>
                 </li>
-                <li>
-                  <router-link class="ms-link" to="/Affectationtacheprojet">Affectation tache projet</router-link>
-                </li>
                 
                 <li>
                   <router-link class="ms-link" to="/ModifierAffectationdetachemod">Modifier Affectation de tache</router-link>
@@ -155,31 +152,3 @@
   color: #555;
 }
 </style>
-
-<script>
-import UserService from "../services/user.service";
-
-export default {
-  name: "Moderator",
-  data() {
-    return {
-      content: "",
-    };
-  },
-  mounted() {
-    UserService.getModeratorBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-  },
-};
-</script>

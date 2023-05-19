@@ -15,6 +15,9 @@
         <li v-if="showModeratorBoard" class="nav-item">
           <router-link to="/mod" class="nav-link">productowner </router-link>
         </li>
+         <li v-if="showUserBoard" class="nav-item">
+          <router-link to="/user" class="nav-link">développeur bord</router-link>
+        </li>
         
         
       </div>
@@ -71,6 +74,13 @@ export default {
     showModeratorBoard() {
       if (this.currentUser && this.currentUser['roles']) {
         return this.currentUser['roles'].includes('ROLE_MODERATOR');
+      }
+
+      return false;
+    },
+     showUserBoard() {
+      if (this.currentUser && this.currentUser['roles']) {
+        return this.currentUser['roles'].includes('ROLE_USER');
       }
 
       return false;

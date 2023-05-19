@@ -113,73 +113,127 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-9">
-        <header class="jumbotron">
-            <h3>{{ content }}</h3>
-
-            <div>cc</div>
-
-        </header>
-        <!-- Contenu de la page -->
-    </div>
 </div>
+<div style="margin-top: -50%; margin-left: 20%">
+    <div class="affectation-page">
+      <h2>Tache Assignment</h2>
+      <div class="form-container">
+        <label for="selectedTache">Select Task:</label>
+        <select v-model="selectedTache" id="selectedTache" class="input-field">
+          <option v-for="tache in taches" :value="tache.item.id" :key="tache.item.id">
+            {{ tache.item.name }}
+          </option>
+        </select>
+
+        <label for="selectedProjet">Select Project:</label>
+        <select v-model="selectedProjet" id="selectedProjet" class="input-field">
+          <option v-for="projet in projets" :value="projet.item.id" :key="projet.item.id">
+            {{ projet.item.name }}
+          </option>
+        </select>
+
+        <button @click="affecter" class="submit-button">Assign Project</button>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-.sidebar {
-  width: 100%;
-  max-width: 100%;
-  margin-right: 10px;
-  margin-left: -60%;
-  margin-top: 10%;
-}
-
-.home-page {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.welcome-section {
-  width: 70%;
-  padding: 20px;
-  background-color: #f2f2f2;
-  color: #333;
-}
-
-.statistics-section {
-  width: 30%;
-  background-color: #eaeaea;
-  padding: 20px;
-  color: #555;
-}
-</style>
-
 <script>
-import UserService from "../services/user.service";
-
 export default {
-  name: "Moderator",
   data() {
     return {
-      content: "",
+      selectedTache: '',
+      selectedProjet: '',
+      taches: [],
+      projets: []
     };
   },
   mounted() {
-    UserService.getModeratorBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
+    this.fetchTaches();
+    this.fetchProjets();
   },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
+    },
+    fetchTaches() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          this.taches = data;
+        })
+        .catch(error => {
+          console.error('Error fetching tasks:', error);
+        });
+    },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllTaskByUser/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          this.projets = data;
+        })
+        .catch(error => {
+          console.error('Error fetching projects:', error);
+        });
+    },
+    affecter() {
+      const tacheId = this.selectedTache;
+      const projetId = this.selectedProjet;
+
+      fetch(`http://localhost:8080/assignment/tache/${tacheId}/${projetId}`, {
+        method: 'GET'
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Assignment successful:', data);
+          // You can perform any additional actions after successful assignment
+        })
+        .catch(error => {
+          console.error('Error assigning project:', error);
+        });
+    }
+  }
 };
 </script>
+<style scoped>
+.affectation-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-container {
+  display: grid;
+  gap: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>

@@ -8,7 +8,7 @@ const BoardAdmin = () => import("./components/BoardAdmin.vue")
 const BoardModerator = () => import("./components/BoardModerator.vue")
 const BoardUser = () => import("./components/BoardUser.vue")
 
-
+import test from "./components/test.vue";
 
 
 
@@ -25,15 +25,36 @@ import AjouterDeveloppeuradmin from "../src/components/adminpages/AjouterDevelop
 import ModifierDeveloppeuradmin from "../src/components/adminpages/ModifierDeveloppeuradmin";
 import SupprimerDeveloppeuradmin from "../src/components/adminpages/SupprimerDeveloppeuradmin";
 import AjouterProjetadmin from "../src/components/adminpages/AjouterProjetadmin";
-
-
 import ListeDeProjetsadmin from "../src/components/adminpages/ListeDeProjetsadmin";
-
 import Affectationadmin from "../src/components/adminpages/Affectationadmin";
-
 import ModifierAffectationadmin from "../src/components/adminpages/ModifierAffectationadmin";
 import ProjetTermineadmin from "../src/components/adminpages/ProjetTermineadmin";
 import ProjetEnCoursadmin from "../src/components/adminpages/ProjetEnCoursadmin";
+
+
+//pagesPO
+
+import Affectationdetachemod from "../src/components/popages/Affectationdetachemod";
+import Divisiondestachesmod from "../src/components/popages/Divisiondestachesmod";
+import ListeDeProjetsmod from "../src/components/popages/ListeDeProjetsmod";
+import ModifierAffectationdetachemod from "../src/components/popages/ModifierAffectationdetachemod";
+import ProjetEnCoursmod from "../src/components/popages/ProjetEnCoursmod";
+import ProjetTerminemod from "../src/components/popages/ProjetTerminemod";
+import TacheEnCoursmod from "../src/components/popages/TacheEnCoursmod";
+import TacheEnTerminemod from "../src/components/popages/TacheEnTerminemod";
+import Affectationtacheprojet from "../src/components/popages/Affectationtacheprojet";
+
+
+
+
+//pageuser
+
+import listedemestache from "../src/components/userpages/listedemestache";
+
+
+import tachetermineruser from "../src/components/userpages/tachetermineruser";
+import tacheEncouruser from "../src/components/userpages/tacheEncouruser";
+
 
 
 
@@ -44,6 +65,75 @@ import ProjetEnCoursadmin from "../src/components/adminpages/ProjetEnCoursadmin"
 
 
 const routes = [
+  {
+    path: "/test",
+    name: "test",
+    component: test,
+  },
+  //user
+  {
+    path: "/tacheEncouruser",
+    name: "tacheEncouruser",
+    component: tacheEncouruser,
+  },
+  {
+    path: "/tachetermineruser",
+    name: "tachetermineruser",
+    component: tachetermineruser,
+  },
+  {
+    path: "/listedemestache",
+    name: "listedemestache",
+    component: listedemestache,
+  },
+
+  //PO
+  {
+    path: "/Affectationtacheprojet",
+    name: "Affectationtacheprojet",
+    component: Affectationtacheprojet,
+  },
+  {
+    path: "/Affectationdetachemod",
+    name: "Affectationdetachemod",
+    component: Affectationdetachemod,
+  },
+  {
+    path: "/Divisiondestachesmod",
+    name: "Divisiondestachesmod",
+    component: Divisiondestachesmod,
+  },
+  {
+    path: "/ListeDeProjetsmod",
+    name: "ListeDeProjetsmod",
+    component: ListeDeProjetsmod,
+  },
+  {
+    path: "/ModifierAffectationdetachemod",
+    name: "ModifierAffectationdetachemod",
+    component: ModifierAffectationdetachemod,
+  },
+  {
+    path: "/ProjetEnCoursmod",
+    name: "ProjetEnCoursmod",
+    component: ProjetEnCoursmod,
+  },
+  {
+    path: "/ProjetTerminemod",
+    name: "ProjetTerminemod",
+    component: ProjetTerminemod,
+  },
+  {
+    path: "/TacheEnCoursmod",
+    name: "TacheEnCoursmod",
+    component: TacheEnCoursmod,
+  },
+  {
+    path: "/TacheEnTerminemod",
+    name: "TacheEnTerminemod",
+    component: TacheEnTerminemod,
+  },
+
   //admin
   {
     path: "/AjouterProductowneradmin",
@@ -80,8 +170,7 @@ const routes = [
     name: "AjouterProjetadmin",
     component: AjouterProjetadmin,
   },
-  
-  
+
   {
     path: "/ListeDeProjetsadmin",
     name: "ListeDeProjetsadmin",
@@ -160,17 +249,11 @@ const routes = [
     component: BoardUser,
   },
 
- 
-
-
-  
   {
     path: "/Task",
     name: "Task",
     component: Task,
   },
- 
-  
 ];
 
 const router = createRouter({

@@ -113,18 +113,67 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-9">
-        <header class="jumbotron">
-            <h3>{{ content }}</h3>
-
-            <div>cc</div>
-
-        </header>
-        <!-- Contenu de la page -->
-    </div>
+</div>
+<div>
+  
+ <div style="margin-top: -40%; margin-left:20%">
+    <h2>List of Projects Assigned to Me</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Deadline</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="projet in projets" :key="projet.id">
+          <td>{{ projet.item.name }}</td>
+          <td>{{ projet.item.description }}</td>
+          <td>{{ projet.item.dateCreation }}</td>
+          <td>{{ projet.item.dateFinProjet }}</td>
+          <td>{{ projet.item.dedline }}</td>
+          <td>{{ projet.item.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      projets: []
+    };
+  },
+  mounted() {
+    this.fetchProjets();
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
+    },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+          this.projets = data;
+        })
+        .catch(error => {
+          console.error('Error fetching projects:', error);
+        });
+    }
+  }
+};
+</script>
+
 
 <style scoped>
 .sidebar {
@@ -155,31 +204,3 @@
   color: #555;
 }
 </style>
-
-<script>
-import UserService from "../services/user.service";
-
-export default {
-  name: "Moderator",
-  data() {
-    return {
-      content: "",
-    };
-  },
-  mounted() {
-    UserService.getModeratorBoard().then(
-      (response) => {
-        this.content = response.data;
-      },
-      (error) => {
-        this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-      }
-    );
-  },
-};
-</script>
