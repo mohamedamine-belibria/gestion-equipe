@@ -1,20 +1,20 @@
 <template>
 <div class="row">
     <div class="col-md-3">
-      <div class="sidebar px-4 py-4 py-md-5 me-0 open">
+    <div class="sidebar px-4 py-4 py-md-5 me-0 open">
         <div class="d-flex flex-column h-100">
           <a href="index.html" class="mb-0 brand-icon">
             <span class="logo-icon">
               <i class="icofont-stopwatch fs-2"></i>
             </span>
             <span>
-              <router-link class="logo-text" to="/admin">Time-Tracker</router-link>
+              <router-link class="logo-text" to="/mod">Time-Tracker</router-link>
             </span>
           </a>
           <!-- Menu: main ul -->
           <ul class="menu-list flex-grow-1 mt-3">
             <li>
-              <router-link class="m-link" to="/admin">
+              <router-link class="m-link" to="/mod">
                 <i class="icofont-home fs-5"></i>
                 <span>Tableau de bord</span>
               </router-link>
@@ -27,7 +27,7 @@
               <ul class="sub-menu collapse show" id="menu-report">
               
                 <li>
-                  <router-link class="ms-link" to="/Listdevloppeuradmin">Développeur</router-link>
+                  <router-link class="ms-link" to="/Listdevloppeurpo">Développeur</router-link>
                 </li>
               </ul>
             </li>
@@ -39,13 +39,13 @@
               <ul class="sub-menu collapse" id="widget">
                 
                 <li>
-                  <router-link class="ms-link" to="/AjouterDeveloppeuradmin">AjouterDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/AjouterDevloppeurpo">AjouterDeveloppeur</router-link>
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierDeveloppeuradmin">ModifierDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/ModifierDeveloppeurpo">ModifierDeveloppeur</router-link>
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerDeveloppeuradmin">SupprimerDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/SupprimerDeveloppeurpo">SupprimerDeveloppeur</router-link>
                 </li>
               </ul>
             </li>
@@ -62,7 +62,7 @@
                   <router-link class="ms-link" to="/ListeDeProjetsmod">Liste De Mes Projets </router-link>
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/Divisiondestachesmod">Projet:Division des tâches</router-link>
+                  <router-link class="ms-link" to="/Divisiondestachesmod">Cree une tâche</router-link>
                 </li>
               </ul>
             </li>

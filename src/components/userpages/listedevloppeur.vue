@@ -73,75 +73,91 @@
       </div>
     </div>
 <div style="margin-top: -40%; margin-left:20%">
- <div class="projects-page">
-    <h2>All taches</h2>
+
+<div class="user-list">
+    <h1>Liste des développeurs</h1>
     <table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Deadline</th>
-          <th>Status</th>
+          <th>Nom d'utilisateur</th>
+          <th>Email</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="projet in projets" :key="projet.id">
-          <td>{{ projet.item.name }}</td>
-          <td>{{ projet.item.description }}</td>
-          <td>{{ projet.item.dateCreation }}</td>
-          <td>{{ projet.item.dateFinProjet }}</td>
-          <td>{{ projet.item.dedline }}</td>
-          <td>{{ projet.item.statut }}</td>
+        <tr v-for="user in users" :key="user.id">
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-   </div>
-    </div>
+
+
+
+</div>
+    
+</div>
 </template>
 
+<style>
+.sidebar {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin-right: 10;
+    margin-left: -60%;
+    margin-top: 10%;
+}
+.user-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+</style>
+
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      projets: []
+      users: []
     };
   },
   mounted() {
-    this.fetchProjets();
+    this.fetchUsers();
   },
   methods: {
-    
-    getUser() {
-      const user = localStorage.getItem("user");
-      return user ? JSON.parse(user).id : null;
-    },
-    fetchProjets() {
-      const userId = this.getUser();
-      fetch(`http://localhost:8080/getTacheversResponsable/${userId}`)
-        .then(response => response.json())
-        .then(data => {
-          this.projets = data;
+    fetchUsers() {
+      axios
+        .get('http://localhost:8080/api/test/getAllROLE_USER')
+        .then(response => {
+          this.users = response.data;
         })
         .catch(error => {
-          console.error('Error fetching projects:', error);
+          console.error(error);
         });
     }
   }
 };
 </script>
-
-<style scoped>
-/* Ajoutez vos styles ici */
-table {
-  width: 90%;
-  border-collapse: collapse;
-}
-th, td {
-  border: 1px solid #000;
-  padding: 8px;
-  text-align: left;
-}
-</style>

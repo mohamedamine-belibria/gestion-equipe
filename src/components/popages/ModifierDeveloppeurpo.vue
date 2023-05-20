@@ -1,7 +1,8 @@
 <template>
+    
 <div class="row">
     <div class="col-md-3">
-     <div class="sidebar px-4 py-4 py-md-5 me-0 open">
+      <div class="sidebar px-4 py-4 py-md-5 me-0 open">
         <div class="d-flex flex-column h-100">
           <a href="index.html" class="mb-0 brand-icon">
             <span class="logo-icon">
@@ -113,141 +114,100 @@
         </div>
       </div>
     </div>
-</div>
 
-     <div style="margin-top: -50%; margin-left:20%">
+
+
 <div class="add-product-owner">
-  <h1>Créer une tâche</h1>
-  <form @submit.prevent="createProject">
-    <div>
-      <label for="name">Nom du TACHE:</label>
-      <input type="text" id="name" v-model="project.name" required>
-    </div>
-    <br>
-    <div>
-      <label for="description">Description:</label>
-      <textarea id="description" v-model="project.description" required></textarea>
-    </div>
-    <div>
-      <label for="dateCreation">Date de création:</label>
-      <input type="date" id="dateCreation" v-model="project.dateCreation" required>
-    </div>
-    <div>
-      <label for="dateFinProjet">Date de fin du projet:</label>
-      <input type="date" id="dateFinProjet" v-model="project.dateFinProjet" required>
-    </div>
-    <div>
-      <label for="dedline">Date limite:</label>
-      <input type="date" id="dedline" v-model="project.dedline" required>
-    </div>
-     <br>
-    <div>
-      <label for="statut">Statut:</label>
-      <select id="statut" v-model="project.statut">
-        <option value="ENCOURS">En cours</option>
-        <option value="TERMINER">Terminé</option>
-      </select>
-    </div>
-     <br>
-      <br>
-    <button type="submit">Créer</button>
-  </form>
-</div>
-
-
- </div>   
-
+    <h1>Liste des développeurs</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom d'utilisateur</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="user in users" :key="user.id">
+          <td v-if="editingUser.id !== user.id">{{ user.username }}</td>
+          <td v-else><input v-model="editingUser.username" /></td>
+          <td v-if="editingUser.id !== user.id">{{ user.email }}</td>
+          <td v-else><input v-model="editingUser.email" /></td>
+          <td>
+            <button v-if="editingUser.id !== user.id" @click="startEditing(user)">Modifier</button>
+            <button v-else @click="submitEdit">Enregistrer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
 </template>
 
-
 <style>
-.sidebar {
-  height: 100%;
-    width: 100%;
-    max-width: 100%;
-    margin-right: 10;
-    margin-left: -60%;
-    margin-top: 10%;
-}
-.add-product-owner {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-}
-
-form {
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 10px;
-}
-
-label {
-  display: block;
-}
-
-input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+/* Votre style CSS ici */
 </style>
+
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      project: {
-        itemType: 'TACHE',
-        name: '',
-        description: '',
-        dateCreation: '',
-        dateFinProjet: '',
-        dedline: '',
-        statut: 'ENCOURS'
-      }
+      users: [],
+      editingUser: {
+        id: null,
+        username: '',
+        email: '',
+        password: '',
+        roles: []
+      },
     };
   },
+  mounted() {
+    this.fetchUsers();
+  },
   methods: {
-    getUser() {
-      const user = localStorage.getItem("user");
-      return user ? JSON.parse(user).id : null;
-    },
-    createProject() {
-      const userId = this.getUser();
-
-      fetch(`http://localhost:8080/creationitem/${userId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.project)
-      })
+    fetchUsers() {
+      axios
+        .get('http://localhost:8080/api/test/getAllROLE_USER')
         .then(response => {
-          if (response.ok) {
-            console.log('Projet créé !');
-            // Redirection vers la page Affectationtacheprojet
-            this.$router.push('/Affectationtacheprojet');
-          } else {
-            console.error('Erreur lors de la création du projet.');
-          }
+          this.users = response.data;
         })
         .catch(error => {
-          console.error('Erreur de connexion :', error);
+          console.error(error);
+        });
+    },
+    startEditing(user) {
+      this.editingUser = { ...user };
+    },
+    submitEdit() {
+      const updatedUser = {
+        id: this.editingUser.id,
+        username: this.editingUser.username,
+        email: this.editingUser.email,
+        password: this.editingUser.password,
+        roles: this.editingUser.roles
+      };
+
+      axios
+        .put('http://localhost:8080/api/test/updateuser', updatedUser)
+        .then(response => {
+          console.log(response.data);
+          this.fetchUsers();
+          this.editingUser = {
+            id: null,
+            username: '',
+            email: '',
+            password: '',
+            roles: []
+          };
+        })
+        .catch(error => {
+          console.error('Une erreur est survenue lors de la mise à jour de l\'utilisateur:', error);
         });
     }
   }
 };
 </script>
+

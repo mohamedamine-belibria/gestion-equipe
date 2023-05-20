@@ -1,5 +1,5 @@
+
 <template>
-    
 <div class="row">
     <div class="col-md-3">
       <div class="sidebar px-4 py-4 py-md-5 me-0 open">
@@ -26,9 +26,7 @@
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse show" id="menu-report">
-                <li>
-                  <router-link class="ms-link" to="/Listproductowneradmin">Productowner</router-link>
-                </li>
+              
                 <li>
                   <router-link class="ms-link" to="/Listdevloppeuradmin">Développeur</router-link>
                 </li>
@@ -40,15 +38,7 @@
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="widget">
-                <li>
-                  <router-link class="ms-link" to="/AjouterProductowneradmin">AjouterProductowner</router-link>
-                </li>
-                <li>
-                  <router-link class="ms-link" to="/ModifierProductowneradmin">ModifierProductowner</router-link>
-                </li>
-                <li>
-                  <router-link class="ms-link" to="/SupprimerProductowneradmin">SupprimerProductowner</router-link>
-                </li>
+                
                 <li>
                   <router-link class="ms-link" to="/AjouterDeveloppeuradmin">AjouterDeveloppeur</router-link>
                 </li>
@@ -66,13 +56,14 @@
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="menu-order">
+               
+                
+                
                 <li>
-                  <router-link class="ms-link" to="/AjouterProjetadmin">AjouterProjet</router-link>
+                  <router-link class="ms-link" to="/ListeDeProjetsmod">Liste De Mes Projets </router-link>
                 </li>
-                
-                
                 <li>
-                  <router-link class="ms-link" to="/ListeDeProjetsadmin">ListeDeProjets</router-link>
+                  <router-link class="ms-link" to="/Divisiondestachesmod">Projet:Division des tâches</router-link>
                 </li>
               </ul>
             </li>
@@ -84,11 +75,14 @@
               <ul class="sub-menu collapse" id="form">
                
                 <li>
-                  <router-link class="ms-link" to="/Affectationadmin">Affectation</router-link>
+                  <router-link class="ms-link" to="/Affectationdetachemod">Affectation de tache</router-link>
+                </li>
+                <li>
+                  <router-link class="ms-link" to="/Affectationtacheprojet">Affectation tache projet</router-link>
                 </li>
                 
                 <li>
-                  <router-link class="ms-link" to="/ModifierAffectationadmin">ModifierAffectation</router-link>
+                  <router-link class="ms-link" to="/ModifierAffectationdetachemod">Modifier Affectation de tache</router-link>
                 </li>
               </ul>
             </li>
@@ -99,10 +93,16 @@
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="font">
                 <li>
-                  <router-link class="ms-link" to="/ProjetTermineadmin">ProjetTermine</router-link>
+                  <router-link class="ms-link" to="/TacheEnCoursmod">Tache En Cours</router-link>
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ProjetEnCoursadmin">ProjetEnCours</router-link>
+                  <router-link class="ms-link" to="/TacheEnTerminemod">Tache Termine</router-link>
+                </li>
+                <li>
+                  <router-link class="ms-link" to="/ProjetTerminemod">ProjetTermine</router-link>
+                </li>
+                <li>
+                  <router-link class="ms-link" to="/ProjetEnCoursmod">ProjetEnCours</router-link>
                 </li>
               </ul>
             </li>
@@ -114,6 +114,8 @@
         </div>
       </div>
     </div>
+</div>
+<div>
 
 
 

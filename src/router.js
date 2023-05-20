@@ -43,6 +43,12 @@ import ProjetTerminemod from "../src/components/popages/ProjetTerminemod";
 import TacheEnCoursmod from "../src/components/popages/TacheEnCoursmod";
 import TacheEnTerminemod from "../src/components/popages/TacheEnTerminemod";
 import Affectationtacheprojet from "../src/components/popages/Affectationtacheprojet";
+import AjouterDevloppeurpo from "../src/components/popages/AjouterDevloppeurpo";
+import ModifierDeveloppeurpo from "../src/components/popages/ModifierDeveloppeurpo";
+import Listdevloppeurpo from "../src/components/popages/Listdevloppeurpo";
+import SupprimerDeveloppeurpo from "../src/components/popages/SupprimerDeveloppeurpo";
+
+
 
 
 
@@ -50,10 +56,10 @@ import Affectationtacheprojet from "../src/components/popages/Affectationtachepr
 //pageuser
 
 import listedemestache from "../src/components/userpages/listedemestache";
-
-
 import tachetermineruser from "../src/components/userpages/tachetermineruser";
 import tacheEncouruser from "../src/components/userpages/tacheEncouruser";
+import listedevloppeur from "../src/components/userpages/listedevloppeur";
+
 
 
 
@@ -86,8 +92,33 @@ const routes = [
     name: "listedemestache",
     component: listedemestache,
   },
-
+  {
+    path: "/listedevloppeur",
+    name: "listedevloppeur",
+    component: listedevloppeur,
+  },
   //PO
+
+  {
+    path: "/SupprimerDeveloppeurpo",
+    name: "SupprimerDeveloppeurpo",
+    component: SupprimerDeveloppeurpo,
+  },
+  {
+    path: "/Listdevloppeurpo",
+    name: "Listdevloppeurpo",
+    component: Listdevloppeurpo,
+  },
+  {
+    path: "/ModifierDeveloppeurpo",
+    name: "ModifierDeveloppeurpo",
+    component: ModifierDeveloppeurpo,
+  },
+  {
+    path: "/AjouterDevloppeurpo",
+    name: "AjouterDevloppeurpo",
+    component: AjouterDevloppeurpo,
+  },
   {
     path: "/Affectationtacheprojet",
     name: "Affectationtacheprojet",
