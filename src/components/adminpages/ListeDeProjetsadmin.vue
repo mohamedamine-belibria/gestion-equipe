@@ -159,6 +159,11 @@
     margin-left: -60%;
     margin-top: 10%;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 </style>
 
 <script>

@@ -127,7 +127,7 @@
         </option>
       </select>
 
-      <label for="selectedModerateur">Select Moderator:</label>
+      <label for="selectedModerateur">Select Productowner:</label>
       <select v-model="selectedModerateur" id="selectedModerateur" class="input-field">
         <option v-for="moderateur in moderateurs" :value="moderateur.id" :key="moderateur.id">
           {{ moderateur.username }}

@@ -191,15 +191,14 @@ export default {
       }
     };
   },
-    methods: {
+  methods: {
     getUser() {
       const user = localStorage.getItem("user");
       return user ? JSON.parse(user).id : null;
     },
-        createProject() {
-        
+    createProject() {
       // Récupérer userId depuis le localStorage
-         const userId = this.getUser();
+      const userId = this.getUser();
 
       // Faire une requête à l'API
       fetch(`http://localhost:8080/creationitem/${userId}`, {
@@ -213,6 +212,8 @@ export default {
           if (response.ok) {
             // Le projet a été créé avec succès
             console.log('Projet créé !');
+            // Rediriger vers la page "Affectationadmin"
+            this.$router.push('/Affectationadmin');
           } else {
             // Gérer les erreurs de requête
             console.error('Erreur lors de la création du projet.');

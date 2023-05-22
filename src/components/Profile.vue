@@ -49,10 +49,8 @@
                     class="d-flex flex-row flex-wrap align-items-center mb-3 mt-2"
                   >
                   </div>
-                  <strong>Authorities:</strong>
-    <ul>
-      <li v-for="role in currentUser.roles" :key="role">{{role}}</li>
-    </ul>
+                
+    
     
                   
                   <ul class="design-box ps-0">
