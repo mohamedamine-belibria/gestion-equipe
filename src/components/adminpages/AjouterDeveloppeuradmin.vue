@@ -1,7 +1,6 @@
 <template>
-    
-<div class="row">
-   <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3">
       <div class="sidebar px-4 py-4 py-md-5 me-0 open">
         <div class="d-flex flex-column h-100">
           <a href="index.html" class="mb-0 brand-icon">
@@ -21,88 +20,134 @@
               </router-link>
             </li>
             <li class="collapsed">
-              <a class="m-link active" data-bs-toggle="collapse" data-bs-target="#menu-report" href="#">
-                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link active"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-report"
+                href="#"
+              >
+                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse show" id="menu-report">
                 <li>
-                  <router-link class="ms-link" to="/Listproductowneradmin">Productowner</router-link>
+                  <router-link class="ms-link" to="/Listproductowneradmin"
+                    >Productowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/Listdevloppeuradmin">Développeur</router-link>
+                  <router-link class="ms-link" to="/Listdevloppeuradmin"
+                    >Développeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#widget" href="#">
-                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#widget"
+                href="#"
+              >
+                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="widget">
                 <li>
-                  <router-link class="ms-link" to="/AjouterProductowneradmin">AjouterProductowner</router-link>
+                  <router-link class="ms-link" to="/AjouterProductowneradmin"
+                    >AjouterProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierProductowneradmin">ModifierProductowner</router-link>
+                  <router-link class="ms-link" to="/ModifierProductowneradmin"
+                    >ModifierProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerProductowneradmin">SupprimerProductowner</router-link>
+                  <router-link class="ms-link" to="/SupprimerProductowneradmin"
+                    >SupprimerProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/AjouterDeveloppeuradmin">AjouterDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/AjouterDeveloppeuradmin"
+                    >AjouterDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierDeveloppeuradmin">ModifierDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/ModifierDeveloppeuradmin"
+                    >ModifierDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerDeveloppeuradmin">SupprimerDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/SupprimerDeveloppeuradmin"
+                    >SupprimerDeveloppeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-order" href="#">
-                <i class="icofont-tasks fs-5"></i> <span>Projets</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-order"
+                href="#"
+              >
+                <i class="icofont-tasks fs-5"></i> <span>Projets</span>
+                <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="menu-order">
                 <li>
-                  <router-link class="ms-link" to="/AjouterProjetadmin">AjouterProjet</router-link>
+                  <router-link class="ms-link" to="/AjouterProjetadmin"
+                    >AjouterProjet</router-link
+                  >
                 </li>
-                
-                
+
                 <li>
-                  <router-link class="ms-link" to="/ListeDeProjetsadmin">ListeDeProjets</router-link>
+                  <router-link class="ms-link" to="/ListeDeProjetsadmin"
+                    >ListeDeProjets</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#form" href="#">
-                <i class="icofont-file-text fs-5"></i> <span>Affectation</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-file-text fs-5"></i> <span>Affectation</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="form">
-               
                 <li>
-                  <router-link class="ms-link" to="/Affectationadmin">Affectation</router-link>
+                  <router-link class="ms-link" to="/Affectationadmin"
+                    >Affectation</router-link
+                  >
                 </li>
-                
+
                 <li>
-                  <router-link class="ms-link" to="/ModifierAffectationadmin">ModifierAffectation</router-link>
+                  <router-link class="ms-link" to="/ModifierAffectationadmin"
+                    >ModifierAffectation</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#font" href="#">
-                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="font">
                 <li>
-                  <router-link class="ms-link" to="/ProjetTermineadmin">ProjetTermine</router-link>
+                  <router-link class="ms-link" to="/ProjetTermineadmin"
+                    >ProjetTermine</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ProjetEnCoursadmin">ProjetEnCours</router-link>
+                  <router-link class="ms-link" to="/ProjetEnCoursadmin"
+                    >ProjetEnCours</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -115,93 +160,134 @@
       </div>
     </div>
 
-
-
-
     <div class="add-product-owner">
-    <h1>Ajouter un utilisateur</h1>
-    <form @submit="saveUser">
-      <label for="username">Nom d'utilisateur:</label>
-      <input type="text" id="username" v-model="user.username" required>
-      <br>
-      <br>
-      <label for="email">Adresse e-mail:</label>
-      <input type="email" id="email" v-model="user.email" required>
-      <br>
-      <br>
-      <label for="password">Mot de passe:</label>
-      <input type="password" id="password" v-model="user.password" required>
-      <br>
-      <br>
-      <br>
-      <button type="submit">Enregistrer</button>
-    </form>
+      <div class="background-image"></div>
+      <h1>Ajouter un utilisateur</h1>
+      <form @submit="saveUser">
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" id="username" v-model="user.username" required />
+        <br />
+        <br />
+        <label for="email">Adresse e-mail:</label>
+        <input type="email" id="email" v-model="user.email" required />
+        <br />
+        <br />
+        <label for="password">Mot de passe:</label>
+        <input type="password" id="password" v-model="user.password" required />
+        <br />
+        <br />
+        <br />
+        <button type="submit">Enregistrer</button>
+      </form>
+    </div>
   </div>
-
-
-    
-</div>
 </template>
-
-
-
-<style scoped>
-.sidebar {
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    margin-right: 10;
-    margin-left: -60%;
-    margin-top: 10%;
-}
-</style>
 
 <script>
 export default {
   data() {
     return {
       user: {
-        username: '',
-        email: '',
-        password: '',
+        username: "",
+        email: "",
+        password: "",
         roles: [
           {
             id: 1,
-            name: 'ROLE_USER'
-          }
-        ]
-      }
+            name: "ROLE_USER",
+          },
+        ],
+      },
     };
   },
   methods: {
     saveUser() {
       // Effectuer la requête POST à l'API
-      fetch('http://localhost:8080/api/test/saveuser', {
-        method: 'POST',
+      fetch("http://localhost:8080/api/test/saveuser", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.user)
+        body: JSON.stringify(this.user),
       })
-      .then(response => {
-        if (response.ok) {
-          // L'utilisateur a été ajouté avec succès
-          console.log('Utilisateur ajouté avec succès');
-          // Réinitialiser le formulaire
-          this.user.username = '';
-          this.user.email = '';
-          this.user.password = '';
-          // Redirection vers la page Listdevloppeuradmin
-          this.$router.push('/Listdevloppeuradmin');
-        } else {
-          // Gérer les erreurs de requête
-          throw new Error('Erreur lors de l\'ajout de l\'utilisateur');
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors de la communication avec l\'API', error);
-      });
-    }
-  }
+        .then((response) => {
+          if (response.ok) {
+            // L'utilisateur a été ajouté avec succès
+            console.log("Utilisateur ajouté avec succès");
+            // Réinitialiser le formulaire
+            this.user.username = "";
+            this.user.email = "";
+            this.user.password = "";
+            // Redirection vers la page Listdevloppeuradmin
+            this.$router.push("/Listdevloppeuradmin");
+          } else {
+            // Gérer les erreurs de requête
+            throw new Error("Erreur lors de l'ajout de l'utilisateur");
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la communication avec l'API", error);
+        });
+    },
+  },
 };
 </script>
+<style scoped>
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Reste du CSS */
+.sidebar {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  margin-right: 10;
+  margin-left: -60%;
+  margin-top: 10%;
+}
+
+.affectation-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-container {
+  display: grid;
+  gap: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>

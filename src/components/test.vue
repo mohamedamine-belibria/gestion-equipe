@@ -1,403 +1,409 @@
 <template>
-<div class="body d-flex py-lg-3 py-md-2">
-    <div class="container-xxl">
-        
-        <!-- Row end  -->
-        <div class="row align-items-center">
-            <div class="col-lg-12 col-md-12 flex-column">
-                <div class="tab-content mt-4 project-board">
-                    <div class="tab-pane fade show active" id="All-list">
-                        <div class="row g-3 gy-5 py-3 row-deck">
-                            <div class="lista col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6" v-for="projet in projetsEnCours" :key="projet.id">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between mt-5">
-                                            <div>
-                                                <div class="project-block light-info-bg">
-                                                    <i class="icofont-paint"></i>
-                                                </div>
-
-                                                <span class="small text-muted project_name fw-bold">
-                                                   {{ projet.item.name }}
-                                                </span>
-
-                                                <h7 class="mb-0 fw-bold fs-6 mb-2">
-                           {{ projet.item.description }}</h7>
-                                            </div>
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editproject" v-on:click="getdata(project.projectnom,project.projectdescription,project.projectobjectif,project.nbsprints,project.nbtaches,project.projectid)">
-                                                    <i class="icofont-edit text-success"></i>
-                                                </button>
-
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject" v-on:click="deleteselect(project)">
-                                                    <i class="icofont-ui-delete text-danger"></i>
-                                                </button>
-                                            </div>
-
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="Started-list">
-                        <div class="row g-3 gy-5 py-3 row-deck">
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between mt-5">
-                                            <div class="lesson_name">
-                                                <div class="project-block light-info-bg">
-                                                    <i class="icofont-paint"></i>
-                                                </div>
-
-                                                <span class="small text-muted project_name fw-bold">
-                                                    Social Geek Made
-                                                </span>
-
-                                                <h6 class="mb-0 fw-bold fs-6 mb-2">UI/UX Design</h6>
-                                            </div>
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editproject">
-                                                    <i class="icofont-edit text-success"></i>
-                                                </button>
-
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
-                                                    <i class="icofont-ui-delete text-danger"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-list avatar-list-stacked pt-2">
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar2.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar1.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar3.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar4.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar8.svg" alt="" />
-
-                                                <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-2 pt-4">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-paper-clip"></i>
-
-                                                    <span class="ms-2">5 Attach</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-sand-clock"></i>
-
-                                                    <span class="ms-2">4 Month</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-group-students"></i>
-
-                                                    <span class="ms-2">5 Members</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-ui-text-chat"></i>
-
-                                                    <span class="ms-2">10</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="dividers-block"></div>
-
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h4 class="small fw-bold mb-0">Progress</h4>
-
-                                            <span class="small light-danger-bg p-1 rounded"><i class="icofont-ui-clock"></i> 35 Days Left</span>
-                                        </div>
-
-                                        <div class="progress" style="height: 8px">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="Approval-list">
-                        <div class="row g-3 gy-5 py-3 row-deck">
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between mt-5">
-                                            <div class="lesson_name">
-                                                <div class="project-block light-info-bg">
-                                                    <i class="icofont-paint"></i>
-                                                </div>
-
-                                                <span class="small text-muted project_name fw-bold">
-                                                    Software Chasers
-                                                </span>
-
-                                                <h6 class="mb-0 fw-bold fs-6 mb-2">UI/UX Design</h6>
-                                            </div>
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editproject">
-                                                    <i class="icofont-edit text-success"></i>
-                                                </button>
-
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
-                                                    <i class="icofont-ui-delete text-danger"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-list avatar-list-stacked pt-2">
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar2.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar1.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar3.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar4.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar8.svg" alt="" />
-
-                                                <span class="avatar rounded-circle text-center pointer sm" data-bs-toggle="modal" data-bs-target="#addUser"><i class="icofont-ui-add"></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-2 pt-4">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-paper-clip"></i>
-
-                                                    <span class="ms-2">5 Attach</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-sand-clock"></i>
-
-                                                    <span class="ms-2">4 Month</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-group-students"></i>
-
-                                                    <span class="ms-2">5 Members</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-ui-text-chat"></i>
-
-                                                    <span class="ms-2">10</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="dividers-block"></div>
-
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h4 class="small fw-bold mb-0">Progress</h4>
-
-                                            <span class="small light-warning-bg p-1 rounded"><i class="icofont-ui-clock"></i> Approval</span>
-                                        </div>
-
-                                        <div class="progress" style="height: 8px">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 0%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="Completed-list">
-                        <div class="row g-3 gy-5 py-3 row-deck">
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center justify-content-between mt-5">
-                                            <div class="lesson_name">
-                                                <div class="project-block light-info-bg">
-                                                    <i class="icofont-paint"></i>
-                                                </div>
-
-                                                <span class="small text-muted project_name fw-bold">
-                                                    Sunburst
-                                                </span>
-
-                                                <h6 class="mb-0 fw-bold fs-6 mb-2">UI/UX Design</h6>
-                                            </div>
-
-                                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#deleteproject">
-                                                    <i class="icofont-ui-delete text-danger"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-list avatar-list-stacked pt-2">
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar2.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar1.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar3.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar4.svg" alt="" />
-
-                                                <img class="avatar rounded-circle sm" src="../assets/images/xs/avatar8.svg" alt="" />
-                                            </div>
-                                        </div>
-
-                                        <div class="row g-2 pt-4">
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-paper-clip"></i>
-
-                                                    <span class="ms-2">5 Attach</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-sand-clock"></i>
-
-                                                    <span class="ms-2 text-success">Completed</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-group-students"></i>
-
-                                                    <span class="ms-2">5 Members</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-6">
-                                                <div class="d-flex align-items-center">
-                                                    <i class="icofont-ui-text-chat"></i>
-
-                                                    <span class="ms-2">10</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="dividers-block"></div>
-
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h4 class="small fw-bold mb-0">Progress</h4>
-
-                                            <span class="small light-success-bg p-1 rounded"><i class="icofont-ui-clock"></i> Completed</span>
-                                        </div>
-
-                                        <div class="progress" style="height: 8px">
-                                            <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                            <div class="progress-bar bg-secondary ms-1" role="progressbar" style="width: 50%" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="sidebar px-4 py-4 py-md-5 me-0 open">
+          <div class="d-flex flex-column h-100">
+            <a href="index.html" class="mb-0 brand-icon">
+              <span class="logo-icon">
+                <i class="icofont-stopwatch fs-2"></i>
+              </span>
+              <span>
+                <router-link class="logo-text" to="/user">Time-Tracker</router-link>
+              </span>
+            </a>
+            <!-- Menu: main ul -->
+            <ul class="menu-list flex-grow-1 mt-3">
+              <li>
+                <router-link class="m-link" to="/user">
+                  <i class="icofont-home fs-5"></i>
+                  <span>Tableau de bord</span>
+                </router-link>
+              </li>
+              <li class="collapsed">
+                <a
+                  class="m-link active"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menu-report"
+                  href="#"
+                >
+                  <i class="icofont-chart-pie fs-5"></i><span>Tous les Développeurs</span>
+                  <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                </a>
+                <!-- Menu: Sub menu ul -->
+                <ul class="sub-menu collapse show" id="menu-report">
+                  <li>
+                    <router-link class="ms-link" to="/listedevloppeur"
+                      >Développeur</router-link
+                    >
+                  </li>
+                </ul>
+              </li>
+
+              <li class="collapsed">
+                <a
+                  class="m-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#form"
+                  href="#"
+                >
+                  <i class="icofont-file-text fs-5"></i> <span>Affectation</span>
+                  <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                </a>
+                <!-- Menu: Sub menu ul -->
+                <ul class="sub-menu collapse" id="form">
+                  <li>
+                    <router-link class="ms-link" to="/listedemestache"
+                      >Mes tâches</router-link
+                    >
+                  </li>
+
+                  <li>
+                    <router-link class="ms-link" to="/pagevide">pagevide</router-link>
+                  </li>
+                </ul>
+              </li>
+              <li class="collapsed">
+                <a
+                  class="m-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#font"
+                  href="#"
+                >
+                  <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span>
+                  <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                </a>
+                <!-- Menu: Sub menu ul -->
+                <ul class="sub-menu collapse" id="font">
+                  <li>
+                    <router-link class="ms-link" to="/tacheEncouruser"
+                      >Tâches en cours</router-link
+                    >
+                  </li>
+                  <li>
+                    <router-link class="ms-link" to="/tachetermineruser"
+                      >Tâches terminées</router-link
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- Menu: menu collapse btn -->
+            <button type="button" class="btn btn-link sidebar-mini-btn text-light">
+              <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <div>
+        <div class="row clearfix g-3">
+          <div style="margin-top: -40%; margin-left: 10%">
+            <div class="col-lg-12 col-md-12 flex-column">
+              <div class="row taskboard g-3 pb-xxl-4">
+                <div
+                  class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 mt-xxl-4 mt-xl-4 mt-lg-4 mt-md-4 mt-sm-4 mt-4"
+                >
+                  <h6 class="fw-bold py-3 mb-0">En cours</h6>
+                  <div class="progress_task">
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        <li
+                          class="dd-item"
+                          data-id="1"
+                          v-for="projet in projetsEnCours"
+                          :key="projet.id"
+                        >
+                          <draggable
+                            v-model="projetsEnCours"
+                            group="tasks"
+                            @change="onDragEnd"
+                          >
+                            <!-- ... -->
+                          </draggable>
+                          <div class="dd-handle">
+                            <div
+                              class="task-info d-flex align-items-center justify-content-between"
+                            >
+                              <h6
+                                class="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0"
+                              >
+                                {{ projet.item.name }}
+                              </h6>
+                              <div
+                                class="task-priority d-flex flex-column align-items-center justify-content-center"
+                              >
+                                <div class="avatar-list avatar-list-stacked m-0">
+                                  <img
+                                    class="avatar rounded-circle small-avt"
+                                    src="../assets/images/xs/avatar2.svg"
+                                    alt=""
+                                  />
+                                  <img
+                                    class="../avatar rounded-circle small-avt"
+                                    src="../assets/images/xs/avatar1.svg"
+                                    alt=""
+                                  />
+                                </div>
+                                <span class="badge bg-warning text-end mt-2">{{
+                                  projet.item.statut
+                                }}</span>
+                              </div>
+                            </div>
+                            <p class="py-2 mb-0"></p>
+                            <div class="tikit-info row g-3 align-items-center">
+                              <div class="col-sm">
+                                <ul
+                                  class="d-flex list-unstyled align-items-center flex-wrap"
+                                >
+                                  <li class="me-2">
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-flag"></i>
+                                      <span class="ms-1">{{ projet.item.dedline }}</span>
+                                    </div>
+                                  </li>
+                                  <li class="me-2">
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-ui-text-chat"></i>
+                                      <span class="ms-1">5</span>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-paper-clip"></i>
+                                      <span class="ms-1">5</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="col-sm text-end">
+                                <div
+                                  class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 mt-xxl-4 mt-xl-4 mt-lg-4 mt-md-0 mt-sm-0 mt-0"
+                >
+                  <h6 class="fw-bold py-3 mb-0">Terminer</h6>
+                  <div
+                    class="completed_task"
+                    v-for="projet in projetsTermines"
+                    :key="projet.id"
+                  >
+                    <draggable
+                      v-model="projetsTermines"
+                      group="tasks"
+                      @change="onDragEnd"
+                    >
+                      <!-- ... -->
+                    </draggable>
+                    <div class="dd" data-plugin="nestable">
+                      <ol class="dd-list">
+                        <li class="dd-item" data-id="1">
+                          <div class="dd-handle">
+                            <div
+                              class="task-info d-flex align-items-center justify-content-between"
+                            >
+                              <h6
+                                class="light-info-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0"
+                              >
+                                {{ projet.item.name }}
+                              </h6>
+                              <div
+                                class="task-priority d-flex flex-column align-items-center justify-content-center"
+                              >
+                                <div class="avatar-list avatar-list-stacked m-0">
+                                  <img
+                                    class="avatar rounded-circle small-avt"
+                                    src="../assets/images/xs/avatar6.svg"
+                                    alt=""
+                                  />
+                                  <img
+                                    class="avatar rounded-circle small-avt"
+                                    src="../assets/images/xs/avatar7.svg"
+                                    alt=""
+                                  />
+                                </div>
+                                <span class="badge bg-warning text-end mt-2">{{
+                                  projet.item.statut
+                                }}</span>
+                              </div>
+                            </div>
+                            <p class="py-2 mb-0">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+                              id nec scelerisque massa.
+                            </p>
+                            <div class="tikit-info row g-3 align-items-center">
+                              <div class="col-sm">
+                                <ul
+                                  class="d-flex list-unstyled align-items-center flex-wrap"
+                                >
+                                  <li class="me-2">
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-flag"></i>
+                                      <span class="ms-1">13 Jan</span>
+                                    </div>
+                                  </li>
+                                  <li class="me-2">
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-ui-text-chat"></i>
+                                      <span class="ms-1">4</span>
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="d-flex align-items-center">
+                                      <i class="icofont-paper-clip"></i>
+                                      <span class="ms-1">1</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div class="col-sm text-end">
+                                <div
+                                  class="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"
+                                >
+                                  Social Geek Made
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-  
-   
-
-  
-</div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            projets: []
-        };
-    },
-    mounted() {
-        this.fetchProjets();
-    },
-    computed: {
-        projetsEnCours() {
-            return this.projets.filter(projet => projet.item.statut === 'ENCOURS');
-        }
-    },
-    methods: {
-        getUser() {
-            const user = localStorage.getItem("user");
-            return user ? JSON.parse(user).id : null;
-        },
-        fetchProjets() {
-            const userId = this.getUser();
-            fetch(`http://localhost:8080/getTacheversResponsable/${userId}`)
-                .then(response => response.json())
-                .then(data => {
-                    this.projets = data;
-                })
-                .catch(error => {
-                    console.error('Error fetching projects:', error);
-                });
-        }
+  data() {
+    return {
+      projets: [],
+    };
+  },
+  mounted() {
+    this.fetchProjets();
+  },
+  updateStatus(evt) {
+    if (evt.added) {
+      let project = evt.added.element;
+      if (evt.added.newIndex != null && evt.added.newIndex >= 0) {
+        project.item.statut = "TERMINER";
+      } else {
+        project.item.statut = "ENCOURS";
+      }
+      // vous devrez peut-être faire une requête PUT à votre serveur ici pour mettre à jour le statut du projet dans la base de données
     }
+  },
+  // ... vos autres méthodes
+
+  computed: {
+    projetsEnCours() {
+      return this.projets.filter((projet) => projet.item.statut === "ENCOURS");
+    },
+    projetsTermines() {
+      return this.projets.filter((projet) => projet.item.statut === "TERMINER");
+    },
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
+    },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getTacheversResponsable/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+        });
+    },
+  },
 };
 </script>
 
-<style scoped>
-/* Ajoutez vos styles ici */
-table {
-    width: 90%;
-    border-collapse: collapse;
+<style>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f4f4f4; /* Arrière-plan pour l'ensemble de la page */
 }
 
-th,
-td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
+.container {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.m-link {
+  color: #fff; /* Couleur de lien claire pour le menu latéral */
+  text-decoration: none;
+  padding: 10px 0;
+}
+
+.m-link:hover {
+  color: #38b2ac; /* Couleur de survol pour les liens du menu latéral */
+}
+
+.sub-menu {
+  padding-left: 20px;
+}
+
+.ms-link {
+  color: #1a5199; /* Couleur de lien plus claire pour le sous-menu */
+}
+
+.ms-link:hover {
+  color: #38b2ac; /* Couleur de survol pour les liens du sous-menu */
+}
+
+.user-list {
+  background-color: #fff; /* Couleur de fond claire pour la liste des utilisateurs */
+  padding: 20px;
+  border-radius: 5px; /* Bord arrondi pour la liste des utilisateurs */
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 25px;
+  border: 1px solid #ddd; /* Bordure de la table */
+}
+
+.table th {
+  background-color: #2d3748; /* Couleur de fond des en-têtes de table */
+  color: #fff; /* Couleur de texte des en-têtes de table */
 }
 </style>

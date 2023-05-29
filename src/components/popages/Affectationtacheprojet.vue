@@ -1,7 +1,7 @@
 <template>
-<div class="row">
+  <div class="row">
     <div class="col-md-3">
-   <div class="sidebar px-4 py-4 py-md-5 me-0 open">
+      <div class="sidebar px-4 py-4 py-md-5 me-0 open">
         <div class="d-flex flex-column h-100">
           <a href="index.html" class="mb-0 brand-icon">
             <span class="logo-icon">
@@ -20,88 +20,128 @@
               </router-link>
             </li>
             <li class="collapsed">
-              <a class="m-link active" data-bs-toggle="collapse" data-bs-target="#menu-report" href="#">
-                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link active"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-report"
+                href="#"
+              >
+                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse show" id="menu-report">
-              
                 <li>
-                  <router-link class="ms-link" to="/Listdevloppeurpo">Développeur</router-link>
+                  <router-link class="ms-link" to="/Listdevloppeurpo"
+                    >Développeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#widget" href="#">
-                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#widget"
+                href="#"
+              >
+                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="widget">
-                
                 <li>
-                  <router-link class="ms-link" to="/AjouterDevloppeurpo">AjouterDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/AjouterDevloppeurpo"
+                    >AjouterDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierDeveloppeurpo">ModifierDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/ModifierDeveloppeurpo"
+                    >ModifierDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerDeveloppeurpo">SupprimerDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/SupprimerDeveloppeurpo"
+                    >SupprimerDeveloppeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-order" href="#">
-                <i class="icofont-tasks fs-5"></i> <span>Projets</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-order"
+                href="#"
+              >
+                <i class="icofont-tasks fs-5"></i> <span>Projets</span>
+                <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="menu-order">
-               
-                
-                
                 <li>
-                  <router-link class="ms-link" to="/ListeDeProjetsmod">Liste De Mes Projets </router-link>
+                  <router-link class="ms-link" to="/ListeDeProjetsmod"
+                    >Liste De Mes Projets
+                  </router-link>
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/Divisiondestachesmod">Cree une tâche</router-link>
+                  <router-link class="ms-link" to="/Divisiondestachesmod"
+                    >Cree une tâche</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#form" href="#">
-                <i class="icofont-file-text fs-5"></i> <span>Affectation</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-file-text fs-5"></i> <span>Affectation</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="form">
-               
                 <li>
-                  <router-link class="ms-link" to="/Affectationdetachemod">Affectation de tache</router-link>
+                  <router-link class="ms-link" to="/Affectationdetachemod"
+                    >Affectation de tache</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/Affectationtacheprojet">Affectation tache projet</router-link>
+                  <router-link class="ms-link" to="/Affectationtacheprojet"
+                    >Affectation tache projet</router-link
+                  >
                 </li>
-                
+
                 <li>
-                  <router-link class="ms-link" to="/ModifierAffectationdetachemod">Modifier Affectation de tache</router-link>
+                  <router-link class="ms-link" to="/ModifierAffectationdetachemod"
+                    >Modifier Affectation de tache</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#font" href="#">
-                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="font">
                 <li>
-                  <router-link class="ms-link" to="/TacheEnCoursmod">Tache En Cours</router-link>
+                  <router-link class="ms-link" to="/TacheEnCoursmod"
+                    >Tache En Cours</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/TacheEnTerminemod">Tache Termine</router-link>
+                  <router-link class="ms-link" to="/TacheEnTerminemod"
+                    >Tache Termine</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ProjetTerminemod">ProjetTermine</router-link>
+                  <router-link class="ms-link" to="/ProjetTerminemod"
+                    >ProjetTermine</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ProjetEnCoursmod">ProjetEnCours</router-link>
+                  <router-link class="ms-link" to="/ProjetEnCoursmod"
+                    >ProjetEnCours</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -113,9 +153,10 @@
         </div>
       </div>
     </div>
-</div>
-<div style="margin-top: -50%; margin-left: 20%">
+  </div>
+  <div style="margin-top: -50%; margin-left: 20%">
     <div class="affectation-page">
+      <div class="background-image"></div>
       <h2>Tache Assignment</h2>
       <div class="form-container">
         <label for="selectedTache">Select Task:</label>
@@ -142,10 +183,10 @@
 export default {
   data() {
     return {
-      selectedTache: '',
-      selectedProjet: '',
+      selectedTache: "",
+      selectedProjet: "",
       taches: [],
-      projets: []
+      projets: [],
     };
   },
   mounted() {
@@ -160,23 +201,23 @@ export default {
     fetchTaches() {
       const userId = this.getUser();
       fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           this.taches = data;
         })
-        .catch(error => {
-          console.error('Error fetching tasks:', error);
+        .catch((error) => {
+          console.error("Error fetching tasks:", error);
         });
     },
     fetchProjets() {
       const userId = this.getUser();
       fetch(`http://localhost:8080/getAllTaskByUser/${userId}`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           this.projets = data;
         })
-        .catch(error => {
-          console.error('Error fetching projects:', error);
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
         });
     },
     affecter() {
@@ -184,19 +225,19 @@ export default {
       const projetId = this.selectedProjet;
 
       fetch(`http://localhost:8080/assignment/tache/${tacheId}/${projetId}`, {
-        method: 'GET'
+        method: "GET",
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Assignment successful:', data);
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Assignment successful:", data);
           // Redirection vers la page TacheEnCoursmod après une affectation réussie
-          this.$router.push('/TacheEnCoursmod');
+          this.$router.push("/TacheEnCoursmod");
         })
-        .catch(error => {
-          console.error('Error assigning project:', error);
+        .catch((error) => {
+          console.error("Error assigning project:", error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -205,6 +246,18 @@ export default {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("poo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 
 h2 {
@@ -232,7 +285,7 @@ label {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;

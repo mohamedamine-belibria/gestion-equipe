@@ -1,7 +1,6 @@
 <template>
-    
-<div class="row">
-   <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3">
       <div class="sidebar px-4 py-4 py-md-5 me-0 open">
         <div class="d-flex flex-column h-100">
           <a href="index.html" class="mb-0 brand-icon">
@@ -21,93 +20,140 @@
               </router-link>
             </li>
             <li class="collapsed">
-              <a class="m-link active" data-bs-toggle="collapse" data-bs-target="#menu-report" href="#">
-                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link active"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-report"
+                href="#"
+              >
+                <i class="icofont-chart-pie fs-5"></i><span>Tous les utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse show" id="menu-report">
                 <li>
-                  <router-link class="ms-link" to="/Listproductowneradmin">Productowner</router-link>
+                  <router-link class="ms-link" to="/Listproductowneradmin"
+                    >Productowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/Listdevloppeuradmin">Développeur</router-link>
+                  <router-link class="ms-link" to="/Listdevloppeuradmin"
+                    >Développeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#widget" href="#">
-                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#widget"
+                href="#"
+              >
+                <i class="icofont-code fs-5"></i><span>Gestion des utilisateurs</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="widget">
                 <li>
-                  <router-link class="ms-link" to="/AjouterProductowneradmin">AjouterProductowner</router-link>
+                  <router-link class="ms-link" to="/AjouterProductowneradmin"
+                    >AjouterProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierProductowneradmin">ModifierProductowner</router-link>
+                  <router-link class="ms-link" to="/ModifierProductowneradmin"
+                    >ModifierProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerProductowneradmin">SupprimerProductowner</router-link>
+                  <router-link class="ms-link" to="/SupprimerProductowneradmin"
+                    >SupprimerProductowner</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/AjouterDeveloppeuradmin">AjouterDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/AjouterDeveloppeuradmin"
+                    >AjouterDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ModifierDeveloppeuradmin">ModifierDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/ModifierDeveloppeuradmin"
+                    >ModifierDeveloppeur</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/SupprimerDeveloppeuradmin">SupprimerDeveloppeur</router-link>
+                  <router-link class="ms-link" to="/SupprimerDeveloppeuradmin"
+                    >SupprimerDeveloppeur</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
-              <a class="m-link" data-bs-toggle="collapse" data-bs-target="#menu-order" href="#">
-                <i class="icofont-tasks fs-5"></i> <span>Projets</span> <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+              <a
+                class="m-link"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu-order"
+                href="#"
+              >
+                <i class="icofont-tasks fs-5"></i> <span>Projets</span>
+                <span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="menu-order">
                 <li>
-                  <router-link class="ms-link" to="/AjouterProjetadmin">AjouterProjet</router-link>
+                  <router-link class="ms-link" to="/AjouterProjetadmin"
+                    >AjouterProjet</router-link
+                  >
                 </li>
-                
-                
+
                 <li>
-                  <router-link class="ms-link" to="/ListeDeProjetsadmin">ListeDeProjets</router-link>
+                  <router-link class="ms-link" to="/ListeDeProjetsadmin"
+                    >ListeDeProjets</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#form" href="#">
-                <i class="icofont-file-text fs-5"></i> <span>Affectation</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-file-text fs-5"></i> <span>Affectation</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="form">
-               
                 <li>
-                  <router-link class="ms-link" to="/Affectationadmin">Affectation</router-link>
+                  <router-link class="ms-link" to="/Affectationadmin"
+                    >Affectation</router-link
+                  >
                 </li>
-                
+
                 <li>
-                  <router-link class="ms-link" to="/ModifierAffectationadmin">ModifierAffectation</router-link>
+                  <router-link class="ms-link" to="/ModifierAffectationadmin"
+                    >ModifierAffectation</router-link
+                  >
                 </li>
               </ul>
             </li>
             <li class="collapsed">
               <a class="m-link" data-bs-toggle="collapse" data-bs-target="#font" href="#">
-                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
+                <i class="icofont-brand-icofont fs-5"></i><span>Statistique</span
+                ><span class="arrow icofont-rounded-down ms-auto text-end fs-5"></span>
               </a>
               <!-- Menu: Sub menu ul -->
               <ul class="sub-menu collapse" id="font">
                 <li>
-                  <router-link class="ms-link" to="/ProjetTermineadmin">ProjetTermine</router-link>
+                  <router-link class="ms-link" to="/ProjetTermineadmin"
+                    >ProjetTermine</router-link
+                  >
                 </li>
                 <li>
-                  <router-link class="ms-link" to="/ProjetEnCoursadmin">ProjetEnCours</router-link>
+                  <router-link class="ms-link" to="/ProjetEnCoursadmin"
+                    >ProjetEnCours</router-link
+                  >
                 </li>
               </ul>
             </li>
           </ul>
           <!-- Menu: menu collapse btn -->
+
           <button type="button" class="btn btn-link sidebar-mini-btn text-light">
             <span class="ms-2"><i class="icofont-bubble-right"></i></span>
           </button>
@@ -115,44 +161,91 @@
       </div>
     </div>
 
-
-
-<div class="add-product-owner">
-    
-    <h1>Liste des utilisateurs</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Nom d'utilisateur</th>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in users" :key="user.id">
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <button @click="confirmDeleteUser(user.id)">Supprimer</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="add-product-owner">
+      <div class="background-image"></div>
+      <h1>Liste des utilisateurs</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button @click="confirmDeleteUser(user.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <style scoped>
-/* Votre style CSS ici */
+.affectation-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.background-image {
+  position: fixed;
+  top: -5%;
+  left: 2%;
+  width: 100%;
+  height: 100%;
+  background-image: url("dev.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  filter: contrast(1) blur(0px); /* Applique le flou et le contraste */
+}
+
+h2 {
+  text-align: center;
+}
+
+.form-container {
+  display: grid;
+  gap: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+label {
+  font-weight: bold;
+}
+
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 </style>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      users: []
+      users: [],
     };
   },
   created() {
@@ -161,11 +254,11 @@ export default {
   methods: {
     fetchUsers() {
       axios
-        .get('http://localhost:8080/api/test/getAllROLE_USER')
-        .then(response => {
+        .get("http://localhost:8080/api/test/getAllROLE_USER")
+        .then((response) => {
           this.users = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
     },
@@ -178,12 +271,12 @@ export default {
       axios
         .delete(`http://localhost:8080/api/test/deletUser/${id}`)
         .then(() => {
-          this.users = this.users.filter(user => user.id !== id);
+          this.users = this.users.filter((user) => user.id !== id);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>

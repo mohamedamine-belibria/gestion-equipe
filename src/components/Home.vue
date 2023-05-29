@@ -2,11 +2,7 @@
   <div class="container">
     <header class="jumbotron">
       <div class="fullscreen-image">
-        <img
-          src="../assets/images/acc.jpg"
-          class="img-thumbnail"
-          alt="..."
-        />
+        <img src="../assets/images/acc.jpg" class="img-thumbnail" alt="..." />
       </div>
     </header>
   </div>
@@ -29,9 +25,7 @@ export default {
       },
       (error) => {
         this.content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
+          (error.response && error.response.data && error.response.data.message) ||
           error.message ||
           error.toString();
       }

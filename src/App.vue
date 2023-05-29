@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <nav class="navbar navbar-expand navbar-dark bg-dark">
       <a href="/" class="navbar-brand">Teamwill-group</a>
       <div class="navbar-nav mr-auto">
@@ -13,13 +12,11 @@
           <router-link to="/admin" class="nav-link">Admin Board</router-link>
         </li>
         <li v-if="showModeratorBoard" class="nav-item">
-          <router-link to="/mod" class="nav-link">productowner </router-link>
+          <router-link to="/mod" class="nav-link">productowner</router-link>
         </li>
-         <li v-if="showUserBoard" class="nav-item">
+        <li v-if="showUserBoard" class="nav-item">
           <router-link to="/user" class="nav-link">développeur bord</router-link>
         </li>
-        
-        
       </div>
 
       <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -49,13 +46,75 @@
         </li>
       </div>
     </nav>
-    
 
     <div class="container">
       <router-view />
     </div>
+    <div>
+      <footer class="footer">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="footer-title elegant-title">TeamWill Tunisia</h4>
+            <p class="footer-description">
+              Teamwill, leader des solutions métier et SI dédiées au crédit et aux
+              financements spécialisés.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <h4 class="footer-title elegant-title">Contact Us</h4>
+            <ul class="footer-contact-list bigger-text">
+              <li><i class="fa fa-map-marker"></i> 123 Street, City, Country</li>
+              <li><i class="fa fa-phone"></i> 123-456-7890</li>
+              <li><i class="fa fa-envelope"></i> info@example.com</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bottom-bar text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <!-- Remove the image from the bottom bar -->
+                <!-- <img src="assets/img/team.png" alt="Logo" class="footer-logo"> -->
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <p class="footer-copyright text-center">
+                  <strong>2023 TeamWill Consulting All rights reserved.</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
+<style>
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4cm;
+  margin-top: 100%;
+  margin-block: -6%;
+}
+
+.footer h4 {
+  color: #fff;
+  font-size: 14px;
+}
+
+.footer p {
+  color: #bbb;
+}
+</style>
 
 <script>
 export default {
@@ -64,33 +123,33 @@ export default {
       return this.$store.state.auth.user;
     },
     showAdminBoard() {
-      if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_ADMIN');
+      if (this.currentUser && this.currentUser["roles"]) {
+        return this.currentUser["roles"].includes("ROLE_ADMIN");
       }
-      
+
       return false;
     },
-  
+
     showModeratorBoard() {
-      if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_MODERATOR');
+      if (this.currentUser && this.currentUser["roles"]) {
+        return this.currentUser["roles"].includes("ROLE_MODERATOR");
       }
 
       return false;
     },
-     showUserBoard() {
-      if (this.currentUser && this.currentUser['roles']) {
-        return this.currentUser['roles'].includes('ROLE_USER');
+    showUserBoard() {
+      if (this.currentUser && this.currentUser["roles"]) {
+        return this.currentUser["roles"].includes("ROLE_USER");
       }
 
       return false;
-    }
+    },
   },
   methods: {
     logOut() {
-      this.$store.dispatch('auth/logout');
-      this.$router.push('/login');
-    }
-  }
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
