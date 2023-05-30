@@ -233,16 +233,6 @@ export default {
 };
 </script>
 <style scoped>
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
 /* Reste du CSS */
 .sidebar {
   height: 100%;
@@ -251,43 +241,5 @@ export default {
   margin-right: 10;
   margin-left: -60%;
   margin-top: 10%;
-}
-
-.affectation-page {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h2 {
-  text-align: center;
-}
-
-.form-container {
-  display: grid;
-  gap: 10px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-label {
-  font-weight: bold;
-}
-
-.submit-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 </style>

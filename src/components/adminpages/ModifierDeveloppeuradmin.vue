@@ -260,29 +260,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.add-product-owner {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #667f98;
-  border-radius: 10px;
-}
-
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("lpo.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-  filter: contrast(0.8) blur(0px);
-}
-
-h1 {
-  margin-bottom: 20px;
-}
-</style>

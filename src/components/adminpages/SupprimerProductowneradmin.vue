@@ -232,34 +232,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.moderator-list {
-  position: relative;
-}
-
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("lpo.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-  filter: contrast(0.8) blur(0px); /* Applique le flou et le contraste */
-}
-
-.content {
-  position: relative;
-  z-index: 1;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Couleur de fond semi-transparente pour le contenu */
-  padding: 20px;
-}
-</style>

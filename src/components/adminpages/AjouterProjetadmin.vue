@@ -223,59 +223,6 @@
   </div>
 </template>
 
-<style scoped>
-.affectation-page {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.background-image {
-  position: fixed;
-  top: -5%;
-  left: 2%;
-  width: 100%;
-  height: 100%;
-  background-image: url("ajoup.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-  filter: contrast(1) blur(0px); /* Applique le flou et le contraste */
-}
-
-h2 {
-  text-align: center;
-}
-
-.form-container {
-  display: grid;
-  gap: 10px;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
-}
-
-label {
-  font-weight: bold;
-}
-
-.submit-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-</style>
-
 <script>
 export default {
   data() {

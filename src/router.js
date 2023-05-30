@@ -13,7 +13,7 @@ import test from "./components/test.vue";
 
 
 
-import Task from "@/components/Task";
+
 
 //pageadmin
 import Listproductowneradmin from "../src/components/adminpages/Listproductowneradmin";
@@ -280,11 +280,7 @@ const routes = [
     component: BoardUser,
   },
 
-  {
-    path: "/Task",
-    name: "Task",
-    component: Task,
-  },
+ 
 ];
 
 const router = createRouter({
