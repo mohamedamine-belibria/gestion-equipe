@@ -484,10 +484,10 @@
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
                         <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
-                            <h3 class="h4 mb-0">Liste des développeurs</h3>
+                            <h3 class="h4 mb-0"></h3>
                             <div class="col-auto d-flex w-sm-100 mt-2 mt-sm-0">
-                                <router-link to="/AjouterDevloppeurpo" class="btn btn-dark btn-set-task w-sm-100">
-                                    <i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Développeur
+                                <router-link to="/Divisiondestachesmod" class="btn btn-dark btn-set-task w-sm-100">
+                                    <i class="icofont-plus-circle me-2 fs-6"></i>Ajouter Tache
                                 </router-link>
                             </div>
                         </div>

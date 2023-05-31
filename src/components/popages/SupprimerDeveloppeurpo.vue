@@ -524,7 +524,7 @@
                                                         <router-link to="/ModifierDeveloppeurpo" class="btn btn-outline-secondary">
                                                             <i class="icofont-edit text-success"></i>
                                                         </router-link>
-                                                        <button @click="confirmDeleteUser(user.id)" class="btn btn-outline-secondary deleterow">
+                                                        <button @click="confirmDeleteUser(user.id)" class="btn btn-danger">
                                                             Supprimer
                                                         </button>
                                                     </div>

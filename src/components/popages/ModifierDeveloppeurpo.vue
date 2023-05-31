@@ -2,7 +2,7 @@
 <body>
     <div id="timetracker-layout" class="theme-mist">
         <!-- sidebar -->
-        <div class="sidebar px-4 py-4 py-md-5 me-0 open" style="margin-left: -150px; margin-top: 20px; ">
+        <div class="sidebar px-4 py-4 py-md-5 me-0 open" style="margin-left: -150px; margin-bottom: -20px; height: 80%;">
             <div class="d-flex flex-column h-100">
                 <a href="index.html" class="mb-0 brand-icon">
                     <span class="logo-icon">
