@@ -487,9 +487,7 @@
                             <div class="card-header p-0 no-bg bg-transparent align-items-center px-0 d-flex border-bottom flex-wrap">
                                 <h3 class="h4 py-3 mb-0">Projets</h3>
                                 <div class="d-flex py-2 project-tab flex-wrap w-sm-100 ms-auto">
-                                    <button type="button" class="btn btn-dark w-sm-100 mb-2 mb-md-0" data-bs-toggle="modal" data-bs-target="#createproject">
-                                        <i class="icofont-plus-circle me-2 fs-6"></i>Create Projet
-                                    </button>
+                                    
                                     <ul class="nav nav-tabs tab-body-header rounded ms-0 ms-md-3 prtab-set w-sm-100" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link active" data-bs-toggle="tab" href="#All-list" role="tab">Tous</a>
