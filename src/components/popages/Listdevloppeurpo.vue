@@ -173,24 +173,19 @@
                                 <div class="card border-0">
                                     <ul class="list-unstyled py-2 px-3">
                                         <li>
-                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/GB.png" alt="" />
-                                                English</a>
+                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/GB.png" alt="" /> English</a>
                                         </li>
                                         <li>
-                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/DE.png" alt="" />
-                                                German</a>
+                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/DE.png" alt="" /> German</a>
                                         </li>
                                         <li>
-                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/FR.png" alt="" />
-                                                French</a>
+                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/FR.png" alt="" /> French</a>
                                         </li>
                                         <li>
-                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/IT.png" alt="" />
-                                                Italian</a>
+                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/IT.png" alt="" /> Italian</a>
                                         </li>
                                         <li>
-                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/RU.png" alt="" />
-                                                Russian</a>
+                                            <a href="#" class=""><img src="../dist/../../assets/images/flag/RU.png" alt="" /> Russian</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -198,20 +193,18 @@
                         </div>
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center">
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="../../assets/images/profile_av.svg" alt="profile" />
+                                <img class="avatar lg rounded-circle img-thumbnail" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">{{
-                              currentUser.username
-                            }}</span>
+                                                    <span class="font-weight-bold">John Quinn</span>
                                                 </p>
-                                                <small class="">{{ currentUser.email }}</small>
+                                                <small class="">Johnquinn@gmail.com</small>
                                             </div>
                                         </div>
 
