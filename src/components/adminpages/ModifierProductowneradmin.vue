@@ -254,12 +254,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -535,7 +535,7 @@
                                                                 <button v-else @click="submitEdit" class="icofont-edit text-success">
                                                                     Enregistrer
                                                                 </button>
-                                                            
+
                                                                 <router-link to="/SupprimerProductowneradmin" class="btn btn-outline-secondary deleterow">
                                                                     <i class="icofont-ui-delete text-danger"></i>
                                                                 </router-link>
@@ -565,68 +565,80 @@
 <script>
 import axios from "axios";
 
-export default {
-    data() {
-        return {
-            productOwners: [],
-            editingProductOwner: {
-                id: null,
-                username: "",
-                email: "",
-                password: "",
-                roles: [],
-            },
-        };
-    },
-    mounted() {
-        this.fetchProductOwners();
-    },
-    methods: {
-        fetchProductOwners() {
-            axios
-                .get("http://localhost:8080/api/test/getAllROLE_MODERATOR")
-                .then((response) => {
-                    this.productOwners = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        startEditing(productOwner) {
-            this.editingProductOwner = {
-                ...productOwner
-            };
-        },
-        submitEdit() {
-            const updatedProductOwner = {
-                id: this.editingProductOwner.id,
-                username: this.editingProductOwner.username,
-                email: this.editingProductOwner.email,
-                password: this.editingProductOwner.password,
-                roles: this.editingProductOwner.roles,
-            };
 
-            axios
-                .put("http://localhost:8080/api/test/updateuser", updatedProductOwner)
-                .then((response) => {
-                    console.log(response.data);
-                    this.fetchProductOwners();
-                    this.editingProductOwner = {
-                        id: null,
-                        username: "",
-                        email: "",
-                        password: "",
-                        roles: [],
-                    };
-                    this.$router.push("/listproductowneradmin"); // Redirection vers la page "listproductowneradmin"
-                })
-                .catch((error) => {
-                    console.error(
-                        "Une erreur est survenue lors de la mise à jour du propriétaire du produit:",
-                        error
-                    );
-                });
-        },
+
+export default {
+  name: 'Profile',
+  data() {
+    return {
+      productOwners: [],
+      editingProductOwner: {
+        id: null,
+        username: "",
+        email: "",
+        password: "",
+        roles: [],
+      },
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    this.fetchProductOwners();
+  },
+  methods: {
+    fetchProductOwners() {
+      axios
+        .get("http://localhost:8080/api/test/getAllROLE_MODERATOR")
+        .then((response) => {
+          this.productOwners = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    startEditing(productOwner) {
+      this.editingProductOwner = {
+        ...productOwner
+      };
+    },
+    submitEdit() {
+      const updatedProductOwner = {
+        id: this.editingProductOwner.id,
+        username: this.editingProductOwner.username,
+        email: this.editingProductOwner.email,
+        password: this.editingProductOwner.password,
+        roles: this.editingProductOwner.roles,
+      };
+
+      axios
+        .put("http://localhost:8080/api/test/updateuser", updatedProductOwner)
+        .then((response) => {
+          console.log(response.data);
+          this.fetchProductOwners();
+          this.editingProductOwner = {
+            id: null,
+            username: "",
+            email: "",
+            password: "",
+            roles: [],
+          };
+          this.$router.push("/listproductowneradmin"); // Redirection vers la page "listproductowneradmin"
+        })
+        .catch((error) => {
+          console.error(
+            "Une erreur est survenue lors de la mise à jour du propriétaire du produit:",
+            error
+          );
+        });
+    },
+  },
 };
+
 </script>

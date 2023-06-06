@@ -254,12 +254,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -545,30 +545,38 @@
 
 <script>
 export default {
-    data() {
-        return {
-            projets: [],
-        };
+  name: 'Profile',
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    mounted() {
-        this.fetchProjets();
+    projetsTermines() {
+      return this.projets.filter((projet) => projet.statut === "ENCOURS");
     },
-    computed: {
-        projetsTermines() {
-            return this.projets.filter((projet) => projet.statut === "ENCOURS");
-        },
+  },
+  data() {
+    return {
+      projets: [],
+    };
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    this.fetchProjets();
+  },
+  methods: {
+    fetchProjets() {
+      fetch("http://localhost:8080/getAllProjets")
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la récupération des projets :", error);
+        });
     },
-    methods: {
-        fetchProjets() {
-            fetch("http://localhost:8080/getAllProjets")
-                .then((response) => response.json())
-                .then((data) => {
-                    this.projets = data;
-                })
-                .catch((error) => {
-                    console.error("Erreur lors de la récupération des projets :", error);
-                });
-        },
-    },
+  },
 };
+
 </script>

@@ -1,5 +1,8 @@
 <template>
 <div id="timetracker-layout" class="theme-mist">
+  
+
+
     <!-- sidebar -->
     <div class="sidebar px-4 py-4 py-md-5 me-0 open" style="margin-left: -150px; margin-bottom: -20px; height: 80%;">
         <div class="d-flex flex-column h-100">
@@ -254,12 +257,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -483,6 +486,7 @@
         <!-- Body: Body -->
         <router-view />
         <div class="body d-flex py-lg-3 py-md-2">
+
             <div class="container-xxl">
                 <div class="row align-items-center">
                     <div class="border-0 mb-4">
@@ -494,6 +498,9 @@
                 </div>
                 <!-- Row end  -->
                 <div class="row clearfix g-3">
+                    
+                    
+              
                     <div class="col-sm-12">
                         <div class="card mb-3">
                             <div class="card-body">
@@ -534,48 +541,61 @@
 
 <script>
 export default {
-    data() {
-        return {
-            user: {
-                username: "",
-                email: "",
-                password: "",
-                roles: [{
-                    id: 1,
-                    name: "ROLE_USER",
-                }, ],
-            },
-        };
+  name: 'Profile',
+  data() {
+    return {
+      
+      user: {
+        username: "",
+        email: "",
+        password: "",
+        roles: [{
+          id: 1,
+          name: "ROLE_USER",
+        }],
+      },
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    methods: {
-        saveUser() {
-            // Effectuer la requête POST à l'API
-            fetch("http://localhost:8080/api/test/saveuser", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(this.user),
-                })
-                .then((response) => {
-                    if (response.ok) {
-                        // L'utilisateur a été ajouté avec succès
-                        console.log("Utilisateur ajouté avec succès");
-                        // Réinitialiser le formulaire
-                        this.user.username = "";
-                        this.user.email = "";
-                        this.user.password = "";
-                        // Redirection vers la page Listdevloppeuradmin
-                        this.$router.push("/Listdevloppeuradmin");
-                    } else {
-                        // Gérer les erreurs de requête
-                        throw new Error("Erreur lors de l'ajout de l'utilisateur");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Erreur lors de la communication avec l'API", error);
-                });
-        },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+  },
+  methods: {
+    saveUser() {
+      // Effectuer la requête POST à l'API
+      fetch("http://localhost:8080/api/test/saveuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(this.user),
+        })
+        .then((response) => {
+          if (response.ok) {
+            // L'utilisateur a été ajouté avec succès
+            console.log("Utilisateur ajouté avec succès");
+            // Réinitialiser le formulaire
+            this.user.username = "";
+            this.user.email = "";
+            this.user.password = "";
+            // Redirection vers la page Listdevloppeuradmin
+            this.$router.push("/Listdevloppeuradmin");
+          } else {
+            // Gérer les erreurs de requête
+            throw new Error("Erreur lors de l'ajout de l'utilisateur");
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la communication avec l'API", error);
+        });
     },
+  },
 };
+
 </script>

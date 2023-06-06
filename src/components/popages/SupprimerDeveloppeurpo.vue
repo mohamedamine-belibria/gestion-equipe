@@ -255,9 +255,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -551,40 +551,50 @@
 import axios from "axios";
 
 export default {
-    data() {
-        return {
-            users: [],
-        };
+  name: 'Profile',
+  data() {
+    return {
+      users: [],
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    fetchUsers() {
+      axios
+        .get("http://localhost:8080/api/test/getAllROLE_USER")
+        .then((response) => {
+          this.users = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
-    created() {
-        this.fetchUsers();
+    confirmDeleteUser(id) {
+      if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+        this.deleteUser(id);
+      }
     },
-    methods: {
-        fetchUsers() {
-            axios
-                .get("http://localhost:8080/api/test/getAllROLE_USER")
-                .then((response) => {
-                    this.users = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        confirmDeleteUser(id) {
-            if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
-                this.deleteUser(id);
-            }
-        },
-        deleteUser(id) {
-            axios
-                .delete(`http://localhost:8080/api/test/deletUser/${id}`)
-                .then(() => {
-                    this.users = this.users.filter((user) => user.id !== id);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
+    deleteUser(id) {
+      axios
+        .delete(`http://localhost:8080/api/test/deletUser/${id}`)
+        .then(() => {
+          this.users = this.users.filter((user) => user.id !== id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    } else {
+      this.fetchUsers();
+    }
+  }
 };
 </script>

@@ -254,12 +254,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -538,57 +538,66 @@
 </div>
 </template>
 
-<script>
-export default {
+<script>export default {
+    name: 'Profile',
     data() {
-        return {
-            selectedProjet: "",
-            selectedModerateur: "",
-            projets: [],
-            moderateurs: [],
-        };
+      return {
+        selectedProjet: "",
+        selectedModerateur: "",
+        projets: [],
+        moderateurs: [],
+      };
+    },
+    computed: {
+      currentUser() {
+        return this.$store.state.auth.user;
+      },
     },
     mounted() {
-        this.fetchProjets();
-        this.fetchModerateurs();
+      if (!this.currentUser) {
+        this.$router.push('/login');
+      }
+      this.fetchProjets();
+      this.fetchModerateurs();
     },
     methods: {
-        fetchProjets() {
-            fetch("http://localhost:8080/getAllProjets")
-                .then((response) => response.json())
-                .then((data) => {
-                    this.projets = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching projects:", error);
-                });
-        },
-        fetchModerateurs() {
-            fetch("http://localhost:8080/api/test/getAllROLE_MODERATOR")
-                .then((response) => response.json())
-                .then((data) => {
-                    this.moderateurs = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching moderators:", error);
-                });
-        },
-        affecter() {
-            const userId = this.selectedModerateur;
-            const itemId = this.selectedProjet;
-
-            fetch(`http://localhost:8080/assignment/assign/${userId}/${itemId}`, {
-                    method: "GET",
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Assignment successful:", data);
-                    // You can perform any additional actions after successful assignment
-                })
-                .catch((error) => {
-                    console.error("Error assigning project:", error);
-                });
-        },
+      fetchProjets() {
+        fetch("http://localhost:8080/getAllProjets")
+          .then((response) => response.json())
+          .then((data) => {
+            this.projets = data;
+          })
+          .catch((error) => {
+            console.error("Error fetching projects:", error);
+          });
+      },
+      fetchModerateurs() {
+        fetch("http://localhost:8080/api/test/getAllROLE_MODERATOR")
+          .then((response) => response.json())
+          .then((data) => {
+            this.moderateurs = data;
+          })
+          .catch((error) => {
+            console.error("Error fetching moderators:", error);
+          });
+      },
+      affecter() {
+        const userId = this.selectedModerateur;
+        const itemId = this.selectedProjet;
+  
+        fetch(`http://localhost:8080/assignment/assign/${userId}/${itemId}`, {
+            method: "GET",
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Assignment successful:", data);
+            // You can perform any additional actions after successful assignment
+          })
+          .catch((error) => {
+            console.error("Error assigning project:", error);
+          });
+      },
     },
-};
+  };
+  
 </script>

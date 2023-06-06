@@ -258,9 +258,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -536,55 +536,66 @@
 
 <script>
 export default {
-    data() {
-        return {
-            selectedProjet: "",
-            selectedModerateur: "",
-            projets: [],
-            moderateurs: [],
-        };
+  name: 'Profile',
+  data() {
+    return {
+      selectedProjet: "",
+      selectedModerateur: "",
+      projets: [],
+      moderateurs: [],
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    fetchProjets() {
+      fetch("http://localhost:8080/getAllTasks")
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+        });
     },
-    mounted() {
-        this.fetchProjets();
-        this.fetchModerateurs();
+    fetchModerateurs() {
+      fetch("http://localhost:8080/api/test/getAllROLE_USER")
+        .then((response) => response.json())
+        .then((data) => {
+          this.moderateurs = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching moderators:", error);
+        });
     },
-    methods: {
-        fetchProjets() {
-            fetch("http://localhost:8080/getAllTasks")
-                .then((response) => response.json())
-                .then((data) => {
-                    this.projets = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching projects:", error);
-                });
-        },
-        fetchModerateurs() {
-            fetch("http://localhost:8080/api/test/getAllROLE_USER")
-                .then((response) => response.json())
-                .then((data) => {
-                    this.moderateurs = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching moderators:", error);
-                });
-        },
-        affecter() {
-            const userId = this.selectedModerateur;
-            const itemId = this.selectedProjet;
+    affecter() {
+      const userId = this.selectedModerateur;
+      const itemId = this.selectedProjet;
 
-            fetch(`http://localhost:8080/assignment/assign/${userId}/${itemId}`, {
-                    method: "GET",
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Assignment successful:", data);
-                    // You can perform any additional actions after successful assignment
-                })
-                .catch((error) => {
-                    console.error("Error assigning project:", error);
-                });
-        },
+      fetch(`http://localhost:8080/assignment/assign/${userId}/${itemId}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Assignment successful:", data);
+          // You can perform any additional actions after successful assignment
+        })
+        .catch((error) => {
+          console.error("Error assigning project:", error);
+        });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    } else {
+      this.fetchProjets();
+      this.fetchModerateurs();
+    }
+  }
 };
 </script>
+

@@ -256,12 +256,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -555,26 +555,36 @@
 import axios from "axios";
 
 export default {
-    data() {
-        return {
-            moderators: [], // Vos données des product owners
-            columns: ["Nom d'utilisateur", "Email"], // Titres des colonnes du tableau
-        };
+  name: 'Profile',
+  data() {
+    return {
+      moderators: [], // Vos données des product owners
+      columns: ["Nom d'utilisateur", "Email"], // Titres des colonnes du tableau
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    mounted() {
-        this.fetchModerators();
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    this.fetchModerators();
+  },
+  methods: {
+    fetchModerators() {
+      axios
+        .get("http://localhost:8080/api/test/getAllROLE_MODERATOR")
+        .then((response) => {
+          this.moderators = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
-    methods: {
-        fetchModerators() {
-            axios
-                .get("http://localhost:8080/api/test/getAllROLE_MODERATOR")
-                .then((response) => {
-                    this.moderators = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-    },
+  },
 };
+
 </script>

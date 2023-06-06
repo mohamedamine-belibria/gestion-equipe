@@ -1,9 +1,9 @@
 <template>
-  <div class="container-xxl">
+  <div class="container-xxl" >
     <!-- header rightbar icon -->
-    <div class="row align-items-center">
-      <div class="col">
-        <a href="../index.html" class="d-flex align-item-center">
+    <div class="row align-items-center" >
+      <div class="col" >
+        <a href="../index.html" class="d-flex align-item-center"  style="width: 400px;">
           <i class="icofont-stopwatch fs-3"></i>
           <h5 class="mb-0 mt-1 mx-2">Timetracker</h5>
         </a>
@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="body d-flex p-0 p-md-2 p-xl-5">
+  <div class="body d-flex p-0 p-md-2 p-xl-5" > //style="width: 400px;"
     <div class="container-xxl">
       <div class="row g-0 border border-secondary rounded-3 mt-2 mt-md-0">
         <div class="col-lg-6 d-flex justify-content-center align-items-center auth-h100 bg-secondary py-2 py-md-0">
@@ -35,7 +35,8 @@
 
             <div class="tab-content mt-4 mb-3">
               <div class="tab-pane fade active show" id="Email">
-                <div class="card">
+                <div class="card" >
+                  
                   <div class="card-body p-4">
                     <Form @submit="handleLogin" :validation-schema="schema">
                       <div class="mb-3">

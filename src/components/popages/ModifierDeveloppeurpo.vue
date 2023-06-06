@@ -197,9 +197,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -496,71 +496,101 @@
     </div>
 </body>
 </template>
-
 <script>
 import axios from "axios";
 
 export default {
-    data() {
-        return {
-            users: [],
-            editingUser: {
-                id: null,
-                username: "",
-                email: "",
-                password: "",
-                roles: [],
-            },
-        };
+  name: 'Profile',
+  data() {
+    return {
+      projets: [],
+      users: [],
+      editingUser: {
+        id: null,
+        username: "",
+        email: "",
+        password: "",
+        roles: [],
+      },
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    mounted() {
-        this.fetchUsers();
+    projetsTermines() {
+      return this.projets.filter((projet) => projet.item.statut === "ENCOURS");
     },
-    methods: {
-        fetchUsers() {
-            axios
-                .get("http://localhost:8080/api/test/getAllROLE_USER")
-                .then((response) => {
-                    this.users = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        startEditing(user) {
-            this.editingUser = {
-                ...user
-            };
-        },
-        submitEdit() {
-            const updatedUser = {
-                id: this.editingUser.id,
-                username: this.editingUser.username,
-                email: this.editingUser.email,
-                password: this.editingUser.password,
-                roles: this.editingUser.roles,
-            };
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
+    },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la récupération des projets :", error);
+        });
+    },
+    fetchUsers() {
+      axios
+        .get("http://localhost:8080/api/test/getAllROLE_USER")
+        .then((response) => {
+          this.users = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    startEditing(user) {
+      this.editingUser = {
+        ...user
+      };
+    },
+    submitEdit() {
+      const updatedUser = {
+        id: this.editingUser.id,
+        username: this.editingUser.username,
+        email: this.editingUser.email,
+        password: this.editingUser.password,
+        roles: this.editingUser.roles,
+      };
 
-            axios
-                .put("http://localhost:8080/api/test/updateuser", updatedUser)
-                .then((response) => {
-                    console.log(response.data);
-                    this.fetchUsers();
-                    this.editingUser = {
-                        id: null,
-                        username: "",
-                        email: "",
-                        password: "",
-                        roles: [],
-                    };
-                })
-                .catch((error) => {
-                    console.error(
-                        "Une erreur est survenue lors de la mise à jour de l'utilisateur:",
-                        error
-                    );
-                });
-        },
+      axios
+        .put("http://localhost:8080/api/test/updateuser", updatedUser)
+        .then((response) => {
+          console.log(response.data);
+          this.fetchUsers();
+          this.editingUser = {
+            id: null,
+            username: "",
+            email: "",
+            password: "",
+            roles: [],
+          };
+        })
+        .catch((error) => {
+          console.error(
+            "Une erreur est survenue lors de la mise à jour de l'utilisateur:",
+            error
+          );
+        });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    } else {
+      this.fetchProjets();
+      this.fetchUsers();
+    }
+  }
 };
 </script>
+

@@ -254,9 +254,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -531,65 +531,74 @@
 </div>
 </template>
 
-  
 <script>
 export default {
-    data() {
-        return {
-            selectedTache: "",
-            selectedProjet: "",
-            taches: [],
-            projets: [],
-        };
+  name: 'Profile',
+  data() {
+    return {
+      selectedTache: "",
+      selectedProjet: "",
+      taches: [],
+      projets: [],
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
     },
-    mounted() {
-        this.fetchTaches();
-        this.fetchProjets();
+    fetchTaches() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.taches = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching tasks:", error);
+        });
     },
-    methods: {
-        getUser() {
-            const user = localStorage.getItem("user");
-            return user ? JSON.parse(user).id : null;
-        },
-        fetchTaches() {
-            const userId = this.getUser();
-            fetch(`http://localhost:8080/getAllProjectByUserAndType/${userId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    this.taches = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching tasks:", error);
-                });
-        },
-        fetchProjets() {
-            const userId = this.getUser();
-            fetch(`http://localhost:8080/getAllTaskByUser/${userId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    this.projets = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching projects:", error);
-                });
-        },
-        affecter() {
-            const tacheId = this.selectedTache;
-            const projetId = this.selectedProjet;
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getAllTaskByUser/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+        });
+    },
+    affecter() {
+      const tacheId = this.selectedTache;
+      const projetId = this.selectedProjet;
 
-            fetch(`http://localhost:8080/assignment/tache/${tacheId}/${projetId}`, {
-                    method: "GET",
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("Assignment successful:", data);
-                    // Redirection vers la page TacheEnCoursmod après une affectation réussie
-                    this.$router.push("/TacheEnCoursmod");
-                })
-                .catch((error) => {
-                    console.error("Error assigning project:", error);
-                });
-        },
+      fetch(`http://localhost:8080/assignment/tache/${tacheId}/${projetId}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Assignment successful:", data);
+          // Redirection vers la page TacheEnCoursmod après une affectation réussie
+          this.$router.push("/TacheEnCoursmod");
+        })
+        .catch((error) => {
+          console.error("Error assigning project:", error);
+        });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    } else {
+      this.fetchTaches();
+      this.fetchProjets();
+    }
+  }
 };
 </script>

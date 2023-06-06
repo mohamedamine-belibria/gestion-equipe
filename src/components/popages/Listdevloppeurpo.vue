@@ -202,9 +202,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -655,74 +655,75 @@
     </div>
 </div>
 </template>
-
 <script>
 import axios from "axios";
 import UserService from "../../services/user.service";
 
 export default {
-    name: "Moderator",
-    data() {
-        return {
-            content: "",
-            users: [],
-            notifications: [],
-        };
+  name: "Moderator",
+  data() {
+    return {
+      content: "",
+      users: [],
+      notifications: [],
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    computed: {
-        currentUser() {
-            return this.$store.state.auth.user;
-        },
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
     },
-    mounted() {
-        if (!this.currentUser) {
-            this.$router.push("/login");
-        }
-        UserService.getModeratorBoard().then(
-            (response) => {
-                this.content = response.data;
-            },
-            (error) => {
-                this.content =
-                    (error.response && error.response.data && error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-            }
-        );
-        this.fetchUsers();
-        this.getAllNotification();
-    },
-    methods: {
-        getUser() {
-            const user = localStorage.getItem("user");
-            return user ? JSON.parse(user).id : null;
-        },
-        getAllNotification() {
-            const userId = this.getUser();
-            const url = `http://localhost:8080/getnotificationsByUser/${userId}`;
+    getAllNotification() {
+      const userId = this.getUser();
+      const url = `http://localhost:8080/getnotificationsByUser/${userId}`;
 
-            // Fetch data from the API
-            fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-                    // Assign the received notifications to the data property
-                    this.notifications = data;
-                    console.log(this.notifications);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        fetchUsers() {
-            axios
-                .get("http://localhost:8080/api/test/getAllROLE_USER")
-                .then((response) => {
-                    this.users = response.data;
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
+      // Fetch data from the API
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          // Assign the received notifications to the data property
+          this.notifications = data;
+          console.log(this.notifications);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
+    fetchUsers() {
+      axios
+        .get("http://localhost:8080/api/test/getAllROLE_USER")
+        .then((response) => {
+          this.users = response.data;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push("/login");
+    } else {
+      UserService.getModeratorBoard().then(
+        (response) => {
+          this.content = response.data;
+        },
+        (error) => {
+          this.content =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+      this.fetchUsers();
+      this.getAllNotification();
+    }
+  },
 };
 </script>
+

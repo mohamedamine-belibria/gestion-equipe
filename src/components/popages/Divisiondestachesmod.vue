@@ -254,9 +254,9 @@
                                             <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -541,50 +541,60 @@
     </div>
 </div>
 </template>
-
 <script>
 export default {
-    data() {
-        return {
-            project: {
-                itemType: "TACHE",
-                name: "",
-                description: "",
-                dateCreation: "",
-                dateFinProjet: "",
-                dedline: "",
-                statut: "ENCOURS",
-            },
-        };
+  name: 'Profile',
+  data() {
+    return {
+      project: {
+        itemType: "TACHE",
+        name: "",
+        description: "",
+        dateCreation: "",
+        dateFinProjet: "",
+        dedline: "",
+        statut: "ENCOURS",
+      },
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
     },
-    methods: {
-        getUser() {
-            const user = localStorage.getItem("user");
-            return user ? JSON.parse(user).id : null;
-        },
-        createProject() {
-            const userId = this.getUser();
+    createProject() {
+      const userId = this.getUser();
 
-            fetch(`http://localhost:8080/creationitem/${userId}`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(this.project),
-                })
-                .then((response) => {
-                    if (response.ok) {
-                        console.log("Projet créé !");
-                        // Redirection vers la page Affectationtacheprojet
-                        this.$router.push("/Affectationtacheprojet");
-                    } else {
-                        console.error("Erreur lors de la création du projet.");
-                    }
-                })
-                .catch((error) => {
-                    console.error("Erreur de connexion :", error);
-                });
+      fetch(`http://localhost:8080/creationitem/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify(this.project),
+      })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Projet créé !");
+          // Redirection vers la page Affectationtacheprojet
+          this.$router.push("/Affectationtacheprojet");
+        } else {
+          console.error("Erreur lors de la création du projet.");
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur de connexion :", error);
+      });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+  }
 };
 </script>

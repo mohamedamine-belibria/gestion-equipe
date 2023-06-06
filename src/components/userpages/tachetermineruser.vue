@@ -210,12 +210,12 @@
                                 <div class="card border-0 w280">
                                     <div class="card-body pb-0">
                                         <div class="d-flex py-1">
-                                            <img class="avatar rounded-circle" src="../../assets/images/profile_av.svg" alt="profile" />
+                                            <img class="avatar rounded-circle" src="../dist/../../assets/images/profile_av.svg" alt="profile" />
                                             <div class="flex-fill ms-3">
                                                 <p class="mb-0">
-                                                    <span class="font-weight-bold">John Quinn</span>
+                                                    <span class="font-weight-bold">{{currentUser.username}}</span>
                                                 </p>
-                                                <small class="">Johnquinn@gmail.com</small>
+                                                <small class="">{{currentUser.email}}</small>
                                             </div>
                                         </div>
 
@@ -499,35 +499,44 @@
   
 <script>
 export default {
-    data() {
-        return {
-            projets: [],
-        };
+  name: 'Profile',
+  data() {
+    return {
+      projets: [],
+    };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     },
-    mounted() {
-        this.fetchProjets();
+    projetsEnCours() {
+      return this.projets.filter((projet) => projet.item.statut === "TERMINER");
     },
-    computed: {
-        projetsEnCours() {
-            return this.projets.filter((projet) => projet.item.statut === "TERMINER");
-        },
+  },
+  methods: {
+    getUser() {
+      const user = localStorage.getItem("user");
+      return user ? JSON.parse(user).id : null;
     },
-    methods: {
-        getUser() {
-            const user = localStorage.getItem("user");
-            return user ? JSON.parse(user).id : null;
-        },
-        fetchProjets() {
-            const userId = this.getUser();
-            fetch(`http://localhost:8080/getTacheversResponsable/${userId}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    this.projets = data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching projects:", error);
-                });
-        },
+    fetchProjets() {
+      const userId = this.getUser();
+      fetch(`http://localhost:8080/getTacheversResponsable/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          this.projets = data;
+        })
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+        });
     },
+  },
+  mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    } else {
+      this.fetchProjets();
+    }
+  }
 };
 </script>
+

@@ -117,7 +117,7 @@ nav {
   }
 }
 .footer {
-  background-color: #333;
+  background-color: #343a40;
   color: #fff;
   padding: 10px 0;
   width: 100%;
@@ -127,7 +127,7 @@ nav {
   right: 0;
   height: 4cm;
   margin-top: 100%;
-  margin-block: -6%;
+  margin-block: -6.5%;
 }
 
 .footer h4 {
